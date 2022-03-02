@@ -22,6 +22,7 @@ public class Credit {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name= "idCredit")
+	private Long idCredit;
 	private float amountCredit;
 	private float amountRemainingCredit;
 	@Temporal (TemporalType.DATE)
@@ -58,6 +59,12 @@ public class Credit {
 	}
 	public void setFirstDueDate(Date firstDueDate) {
 		this.firstDueDate = firstDueDate;
+	}
+	public float getAmountCredit() {
+		return amountCredit;
+	}
+	public void setAmountCredit(float amountCredit) {
+		this.amountCredit = amountCredit;
 	}
 
  

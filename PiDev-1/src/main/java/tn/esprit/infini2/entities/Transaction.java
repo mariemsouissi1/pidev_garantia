@@ -15,7 +15,8 @@ public class Transaction {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name= "idTransaction")
-	private float amountTransaction;
+	private Long idTransaction;
+
 	private String fileTransaction;
 	
 	@Temporal (TemporalType.DATE)
