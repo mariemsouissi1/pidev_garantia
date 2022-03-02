@@ -8,11 +8,11 @@
 		<version>2.6.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>tn.esprit.4infini2.pidev</groupId>
-	<artifactId>pidev</artifactId>
-	<version>1.0.0</version>
-	<name>pidev</name>
-	<description>Demo project for Spring Boot</description>
+	<groupId>tn.esprit.4infini2</groupId>
+	<artifactId>PiDev</artifactId>
+	<version>1.0</version>
+	<name>PiDev</name>
+	<description>tp1SpringBoot</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
