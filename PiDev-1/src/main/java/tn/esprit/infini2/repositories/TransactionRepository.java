@@ -1,0 +1,11 @@
+package tn.esprit.infini2.repositories;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import tn.esprit.infini2.entities.Transaction;
+
+@Repository
+public interface TransactionRepository extends CrudRepository<Transaction, Long> {
+
+}
