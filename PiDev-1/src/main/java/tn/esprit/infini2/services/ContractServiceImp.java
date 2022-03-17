@@ -2,38 +2,42 @@ package tn.esprit.infini2.services;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import tn.esprit.infini2.entities.Claim;
 import tn.esprit.infini2.entities.Contract;
+import tn.esprit.infini2.repositories.ContractRepository;
 
 public class ContractServiceImp implements IContractService{
 
+	@Autowired
+	ContractRepository ContractRepository;
 	@Override
 	public List<Contract> retrieveAllContracts() {
-		// TODO Auto-generated method stub
-		return null;
+		return (List<Contract>) ContractRepository.findAll();
 	}
 
 	@Override
 	public Contract addContract(Contract c) {
-		// TODO Auto-generated method stub
-		return null;
+		ContractRepository.save(c);
+		return c;
 	}
 
 	@Override
 	public void deleteContract(Long id) {
-		// TODO Auto-generated method stub
+		ContractRepository.deleteById(id);		
 		
 	}
 
 	@Override
 	public Contract updateContract(Contract u) {
-		// TODO Auto-generated method stub
-		return null;
+		ContractRepository.save(u);
+		return u;
 	}
 
 	@Override
 	public Contract retrieveContract(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return ContractRepository.findById(id).orElse(null);
 	}
 
 }

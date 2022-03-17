@@ -9,9 +9,9 @@ public interface IContractService {
 
 	Contract addContract(Contract c);
 
-	void deleteContract(Long id);
+	void deleteContract(Long idContract);
 
 	Contract updateContract(Contract u);
 
-	Contract retrieveContract(Long id);
+	Contract retrieveContract(Long idContract);
 }

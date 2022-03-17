@@ -1,39 +1,39 @@
 package tn.esprit.infini2.services;
 
 import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import tn.esprit.infini2.entities.customerAccount;
+import tn.esprit.infini2.repositories.CustomerAccountRepository;
 
 public class CustomerAccountServiceImp implements ICustomerAccountService{
-
+	@Autowired
+	CustomerAccountRepository customerAccountRepository;
 	@Override
 	public List<customerAccount> retrieveAllCustomerAccounts() {
-		// TODO Auto-generated method stub
-		return null;
+		return (List<customerAccount>) customerAccountRepository.findAll();
 	}
 
 	@Override
 	public customerAccount addCustomerAccount(customerAccount c) {
-		// TODO Auto-generated method stub
-		return null;
+		customerAccountRepository.save(c);
+		return c;
 	}
 
 	@Override
 	public void deleteCustomerAccount(Long id) {
-		// TODO Auto-generated method stub
+		customerAccountRepository.deleteById(id);	
 		
 	}
 
 	@Override
 	public customerAccount updateCustomerAccount(customerAccount u) {
-		// TODO Auto-generated method stub
-		return null;
+		customerAccountRepository.save(u);
+		return u;
 	}
 
 	@Override
 	public customerAccount retrieveCustomerAccount(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return customerAccountRepository.findById(id).orElse(null);
 	}
 
 }
