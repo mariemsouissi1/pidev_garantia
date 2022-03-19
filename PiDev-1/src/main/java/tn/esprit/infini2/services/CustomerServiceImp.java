@@ -2,18 +2,18 @@ package tn.esprit.infini2.services;
 
 import java.util.List;
 
-import tn.esprit.infini2.entities.customer;
+import tn.esprit.infini2.entities.Customer;
 
 public class CustomerServiceImp implements ICustomerService{
 
 	@Override
-	public List<customer> retrieveAllCustomers() {
+	public List<Customer> retrieveAllCustomers() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public customer addCustomer(customer c) {
+	public Customer addCustomer(Customer c) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -25,13 +25,13 @@ public class CustomerServiceImp implements ICustomerService{
 	}
 
 	@Override
-	public customer updateCustomer(customer u) {
+	public Customer updateCustomer(Customer u) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public customer retrieveCustomer(Long id) {
+	public Customer retrieveCustomer(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

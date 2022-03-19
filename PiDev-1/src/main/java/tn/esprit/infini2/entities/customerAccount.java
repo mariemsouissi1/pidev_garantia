@@ -36,7 +36,7 @@ public class customerAccount implements Serializable{
 	private Float debit;
 	
 	@OneToOne(mappedBy="customerAccount")
-	customer customer;
+    Customer customer;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="C_customerAccount")
 	private Set<Contract> contracts;
@@ -78,10 +78,10 @@ public class customerAccount implements Serializable{
 	public void setDebit(Float debit) {
 		this.debit = debit;
 	}
-	public customer getCustomer() {
+	public Customer getCustomer() {
 		return customer;
 	}
-	public void setCustomer(customer customer) {
+	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
 	

@@ -2,16 +2,16 @@ package tn.esprit.infini2.services;
 
 import java.util.List;
 
-import tn.esprit.infini2.entities.employee;
+import tn.esprit.infini2.entities.Employee;
 
 public interface IEmployeeService {
-	List<employee> retrieveAllCustomerAccounts();
+	List<Employee> retrieveAllCustomerAccounts();
 
-	employee addEmployee(employee c);
+	Employee addEmployee(Employee c);
 
 	void deleteEmployee(Long id);
 
-	employee updateEmployee(employee u);
+	Employee updateEmployee(Employee u);
 
-	employee retrieveEmployee(Long id);
+	Employee retrieveEmployee(Long id);
 }

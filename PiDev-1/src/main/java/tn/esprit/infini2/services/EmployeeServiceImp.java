@@ -2,18 +2,18 @@ package tn.esprit.infini2.services;
 
 import java.util.List;
 
-import tn.esprit.infini2.entities.employee;
+import tn.esprit.infini2.entities.Employee;
 
 public class EmployeeServiceImp implements IEmployeeService{
 
 	@Override
-	public List<employee> retrieveAllCustomerAccounts() {
+	public List<Employee> retrieveAllCustomerAccounts() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public employee addEmployee(employee c) {
+	public Employee addEmployee(Employee c) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -25,13 +25,13 @@ public class EmployeeServiceImp implements IEmployeeService{
 	}
 
 	@Override
-	public employee updateEmployee(employee u) {
+	public Employee updateEmployee(Employee u) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public employee retrieveEmployee(Long id) {
+	public Employee retrieveEmployee(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

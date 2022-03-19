@@ -2,16 +2,16 @@ package tn.esprit.infini2.services;
 
 import java.util.List;
 
-import tn.esprit.infini2.entities.customer;
+import tn.esprit.infini2.entities.Customer;
 
 public interface ICustomerService {
-	List<customer> retrieveAllCustomers();
+	List<Customer> retrieveAllCustomers();
 
-	customer addCustomer(customer c);
+	Customer addCustomer(Customer c);
 
 	void deleteCustomer(Long id);
 
-	customer updateCustomer(customer u);
+	Customer updateCustomer(Customer u);
 
-	customer retrieveCustomer(Long id);
+	Customer retrieveCustomer(Long id);
 }

@@ -14,7 +14,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="customer")
-public class customer implements Serializable{
+public class Customer implements Serializable{
 	/**
 	 * 
 	 */
@@ -30,6 +30,7 @@ public class customer implements Serializable{
 	private int phoneNumber;
 	private int cin;
 	private String job;
+	@Column(name="email",unique = true)
 	private String email;
 	private String password;
 	@OneToOne
