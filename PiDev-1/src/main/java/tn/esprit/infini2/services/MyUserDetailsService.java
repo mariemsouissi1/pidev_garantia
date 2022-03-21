@@ -21,7 +21,6 @@ public class MyUserDetailsService implements UserDetailsService{
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
 		Collection<GrantedAuthority> authorities = new ArrayList<>();
-
 		authorities.add(new SimpleGrantedAuthority(userService.getAuthentifaction(username)));
 		return new User(username,"authorise", authorities);
 		

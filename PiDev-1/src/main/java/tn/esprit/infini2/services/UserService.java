@@ -17,29 +17,28 @@ public class UserService {
 
     @Autowired
     private EmployeeRepository  employeeRepository;
+    @Autowired
     private CustomerRepository customerRepository;
 
-    private PasswordEncoder passwordEncoder;
-
-    public BCryptPasswordEncoder PasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
     public Boolean verifAuthentifaction(AuthenticationRequest authenticationRequest) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
         Optional<Employee> employee = employeeRepository.findEmployeeByEmail(authenticationRequest.getUsername());
-        Optional<Customer> customer = customerRepository.findCustomerByEmail(authenticationRequest.getUsername());
         if (employee.isPresent()){
-            this.passwordEncoder = this.PasswordEncoder();
             Boolean verif = employee.get().getPassword() != null && !employee.get().getPassword().isEmpty()
-                    && this.passwordEncoder.matches(employee.get().getPassword(), authenticationRequest.getPassword());
+                    && passwordEncoder.matches( authenticationRequest.getPassword(),employee.get().getPassword());
             return verif;
         }
         else{
-if(customer.isPresent()){
-    this.passwordEncoder = this.PasswordEncoder();
-    Boolean verif = customer.get().getPassword() != null && !customer.get().getPassword().isEmpty()
-            && this.passwordEncoder.matches(customer.get().getPassword(), authenticationRequest.getPassword());
-    return verif;
-} else return  false;
+            Optional<Customer> customer = customerRepository.findCustomerByEmail(authenticationRequest.getUsername());
+            if(customer.isPresent())
+            {
+                Boolean verif = customer.get().getPassword() != null && !customer.get().getPassword().isEmpty()
+                && passwordEncoder.matches( authenticationRequest.getPassword(),customer.get().getPassword());
+                return verif;
+            }
+            else
+                return  false;
         }
 //        if (authenticationRequest.getUsername().equals("foo") && authenticationRequest.getPassword().equals("foo"))
 //            return true;
@@ -48,12 +47,22 @@ if(customer.isPresent()){
 //        return false;
     }
 
-    public String getAuthentifaction(String usename) {
-        if (usename.equals("foo") )
+    public String getAuthentifaction(String username) {
+
+        Optional<Employee> employee = employeeRepository.findEmployeeByEmail(username);
+        if (employee.isPresent()){
             return Employee();
-        if (usename.equals("foo2") )
-            return Customer();
-        return "";
+        }
+        else{
+            Optional<Customer> customer = customerRepository.findCustomerByEmail(username);
+            if(customer.isPresent())
+            {
+                return Customer();
+            }
+            else
+                return  null;
+        }
+
     }
 
 

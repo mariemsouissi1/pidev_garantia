@@ -28,15 +28,25 @@ public class Employee implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="idEmployee")
 	private Long idEmployee; //clé primaire
+
+	@Column(name = "first_name", nullable = false, length = 20)
 	private String firstName;
+
+	@Column(name = "last_name", nullable = false, length = 20)
 	private String lastName;
+
 	@Temporal(TemporalType.DATE)
 	private Date birthDate;
+
 	private int phoneNumber;
+
 	private int cin;
-	private String job;
-	@Column(name="email",unique = true)
+
+
+	@Column(nullable = false, name="email", unique = true, length = 45)
 	private String email;
+
+	@Column(nullable = true	, length = 64)
 	private String password;
 
 	@Enumerated(EnumType.STRING)
@@ -103,16 +113,6 @@ public class Employee implements Serializable{
 	public void setCin(int cin)
 	{
 		this.cin = cin;
-	}
-
-	public String getJob()
-	{
-		return job;
-	}
-
-	public void setJob(String job)
-	{
-		this.job = job;
 	}
 
 	public String getEmail()
