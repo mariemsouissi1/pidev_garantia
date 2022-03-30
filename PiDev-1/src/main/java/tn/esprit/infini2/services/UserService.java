@@ -40,11 +40,6 @@ public class UserService {
             else
                 return  false;
         }
-//        if (authenticationRequest.getUsername().equals("foo") && authenticationRequest.getPassword().equals("foo"))
-//            return true;
-//        if (authenticationRequest.getUsername().equals("foo2") && authenticationRequest.getPassword().equals("foo2"))
-//            return true;
-//        return false;
     }
 
     public String getAuthentifaction(String username) {
@@ -65,11 +60,16 @@ public class UserService {
 
     }
 
-
     public String Employee(){
         return Employee.class.getSimpleName();
     }
     public String Customer(){
         return Customer.class.getSimpleName();
     }
+
+
+
+
+
+
 }

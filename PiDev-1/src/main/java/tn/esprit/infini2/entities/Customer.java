@@ -1,6 +1,7 @@
 package tn.esprit.infini2.entities;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import javax.persistence.*;
 
@@ -26,12 +27,16 @@ public class Customer implements Serializable{
 
 	private int cin;
 
+	@Column(name = "gender", nullable = false, length = 10)
+	private Gender gender;
+
 	private float monthlyIncome;
 
 	private String job;
 
 	@Enumerated(EnumType.STRING)
 	private Governorates governorate;
+
 
 	public Governorates getGovernorate() {
 		return governorate;
@@ -85,7 +90,7 @@ public class Customer implements Serializable{
 		this.lastName = lastName;
 	}
 
-	public Date getBirthDate() {
+	public LocalDate getBirthDate() {
 		return birthDate;
 	}
 
@@ -148,5 +153,14 @@ public class Customer implements Serializable{
 
 	public void setActive(Boolean active) {
 		this.active = active;
+	}
+
+
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
 	}
 }

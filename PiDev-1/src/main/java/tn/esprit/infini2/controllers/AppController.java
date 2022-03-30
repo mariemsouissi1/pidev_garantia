@@ -31,32 +31,12 @@ public class AppController {
     public BCryptPasswordEncoder PasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
-//    @GetMapping("")
-//    public String viewHomePage() {
-//        return "index";
-//    }
-//
-//
-//    @GetMapping("/registerEmployee")
-//    public String showEmployeeRegistrationForm(Model model) {
-//        model.addAttribute("employee", new Employee());
-//
-//        return "signup_form_employee";
-//    }
-//
-//    @GetMapping("/registerCustomer")
-//    public String showCustomerRegistrationForm(Model model) {
-//        model.addAttribute("customer", new Customer());
-//
-//        return "signup_form_customer";
-//    }
 
     @PostMapping("/process_register_employee")
     public Employee processRegisterEmployee(@RequestBody Employee employee) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(employee.getPassword());
         employee.setPassword(encodedPassword);
-
         return  employeRepo.save(employee);
 
     }
