@@ -1,6 +1,8 @@
 package tn.esprit.infini2.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,6 +12,7 @@ import tn.esprit.infini2.entities.Customer;
 import tn.esprit.infini2.entities.Employee;
 import tn.esprit.infini2.repositories.CustomerRepository;
 import tn.esprit.infini2.repositories.EmployeeRepository;
+import tn.esprit.infini2.services.EmailService;
 
 @RestController
 public class AppController {
@@ -19,6 +22,9 @@ public class AppController {
 
     @Autowired
     private CustomerRepository customerRepo;
+
+    @Autowired
+    private EmailService senderService;
 
     private PasswordEncoder passwordEncoder;
 
@@ -46,7 +52,7 @@ public class AppController {
 //    }
 
     @PostMapping("/process_register_employee")
-    public Employee processRegisterEmployee(Employee employee) {
+    public Employee processRegisterEmployee(@RequestBody Employee employee) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(employee.getPassword());
         employee.setPassword(encodedPassword);
@@ -55,12 +61,13 @@ public class AppController {
 
     }
 
+    @EventListener(ApplicationReadyEvent.class)
     @PostMapping("/process_register_customer")
     public Customer processRegisterCustomer(@RequestBody  Customer customer) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(customer.getPassword());
         customer.setPassword(encodedPassword);
-
+        senderService.sendSimpleMessage(customer.getEmail(),"subject","body");
         return  customerRepo.save(customer);
     }
 

@@ -2,6 +2,7 @@ package tn.esprit.infini2.services;
 
 import java.util.List;
 
+import tn.esprit.infini2.entities.Customer;
 import tn.esprit.infini2.entities.customerAccount;
 
 public interface ICustomerAccountService {
@@ -14,4 +15,6 @@ public interface ICustomerAccountService {
 	customerAccount updateCustomerAccount(customerAccount u);
 
 	customerAccount retrieveCustomerAccount(Long id);
+
+	Float calculScore(Customer customer);
 }

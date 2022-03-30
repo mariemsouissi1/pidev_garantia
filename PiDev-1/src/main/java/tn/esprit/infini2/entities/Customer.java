@@ -2,15 +2,7 @@ package tn.esprit.infini2.entities;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 @Table(name="customer")
@@ -38,6 +30,18 @@ public class Customer implements Serializable{
 
 	private String job;
 
+	@Enumerated(EnumType.STRING)
+	private Governorates governorate;
+
+	public Governorates getGovernorate() {
+		return governorate;
+	}
+
+	public void setGovernorate(Governorates governorate) {
+		this.governorate = governorate;
+	}
+
+	@Column
 	private Boolean active=false;
 
 	@Column(name="email",nullable = false,unique = true, length = 45)
