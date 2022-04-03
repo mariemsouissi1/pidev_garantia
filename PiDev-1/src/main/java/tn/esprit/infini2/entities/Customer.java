@@ -1,7 +1,6 @@
 package tn.esprit.infini2.entities;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Date;
 import javax.persistence.*;
 
@@ -64,7 +63,7 @@ public class Customer implements Serializable{
 	}
 
 	@OneToOne
-	private customerAccount customerAccount;
+	private CustomerAccount customerAccount;
 
 	public Long getIdCustomer() {
 		return idCustomer;
@@ -90,7 +89,7 @@ public class Customer implements Serializable{
 		this.lastName = lastName;
 	}
 
-	public LocalDate getBirthDate() {
+	public Date getBirthDate() {
 		return birthDate;
 	}
 
@@ -138,11 +137,11 @@ public class Customer implements Serializable{
 		this.password = password;
 	}
 
-	public customerAccount getCustomerAccount() {
+	public CustomerAccount getCustomerAccount() {
 		return customerAccount;
 	}
 
-	public void setCustomerAccount(customerAccount customerAccount) {
+	public void setCustomerAccount(CustomerAccount customerAccount) {
 		this.customerAccount = customerAccount;
 	}
 

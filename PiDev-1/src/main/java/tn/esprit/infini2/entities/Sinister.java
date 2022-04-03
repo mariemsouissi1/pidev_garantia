@@ -103,7 +103,7 @@ public class Sinister implements Serializable {
 	
 	
 	@ManyToOne
-	customerAccount S_customerAccount;
+	CustomerAccount S_customerAccount;
 	@OneToOne
 	private Indemnity indemnity;
 	

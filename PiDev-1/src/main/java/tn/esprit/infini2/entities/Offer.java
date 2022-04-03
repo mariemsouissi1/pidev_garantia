@@ -27,7 +27,7 @@ public class Offer implements Serializable {
 	private String offer_description;
 	private Date offer_expiration_date;
 	@ManyToMany (mappedBy="offer")
-	private Set<customerAccount> O_customerAccount;
+	private Set<CustomerAccount> O_customerAccount;
 	public Long getOffer_id() {
 		return offer_id;
 	}

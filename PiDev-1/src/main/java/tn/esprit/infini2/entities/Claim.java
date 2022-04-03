@@ -27,8 +27,8 @@ public class Claim  implements Serializable {
 	private Claim_state claim_state;
 	@Enumerated(EnumType.STRING)
 	private Claim_type claim_type;
-	@ManyToOne 
-	customerAccount customerClaim;
+	@ManyToOne
+	CustomerAccount customerClaim;
 	public Long getClaim_id() {
 		return claim_id;
 	}

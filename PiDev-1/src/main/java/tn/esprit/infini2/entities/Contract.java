@@ -37,7 +37,7 @@ public class Contract implements Serializable{
 	@OneToOne
 	private Premium premium;
 	@ManyToOne
-	customerAccount C_customerAccount;
+	CustomerAccount C_customerAccount;
 	public Long getIdContract() {
 		return idContract;
 	}

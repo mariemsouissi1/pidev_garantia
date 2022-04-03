@@ -3,18 +3,18 @@ package tn.esprit.infini2.services;
 import java.util.List;
 
 import tn.esprit.infini2.entities.Customer;
-import tn.esprit.infini2.entities.customerAccount;
+import tn.esprit.infini2.entities.CustomerAccount;
 
 public interface ICustomerAccountService {
-	List<customerAccount> retrieveAllCustomerAccounts();
+	List<CustomerAccount> retrieveAllCustomerAccounts();
 
-	customerAccount addCustomerAccount(customerAccount c);
+	CustomerAccount addCustomerAccount(CustomerAccount c);
 
 	void deleteCustomerAccount(Long id);
 
-	customerAccount updateCustomerAccount(customerAccount u);
+	CustomerAccount updateCustomerAccount(CustomerAccount u);
 
-	customerAccount retrieveCustomerAccount(Long id);
+	CustomerAccount retrieveCustomerAccount(Long id);
 
 	Float calculScore(Customer customer);
 }

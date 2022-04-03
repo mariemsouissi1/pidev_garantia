@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import tn.esprit.infini2.entities.Customer;
 import tn.esprit.infini2.repositories.CustomerRepository;
 
+@Service
 public class CustomerServiceImp implements ICustomerService{
 
 	@Autowired
@@ -37,14 +39,20 @@ public class CustomerServiceImp implements ICustomerService{
 
 	@Override
 	public Customer updateCustomer(Customer u) {
-		// TODO Auto-generated method stub
-		return null;
+		customerRepository.save(u);
+		return u;
 	}
 
 	@Override
 	public Customer retrieveCustomer(Long id) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<Customer> retrieveAllCustomers(Long id) {
+		List<Customer> list=customerRepository.findAll();
+		return list;
 	}
 
 }

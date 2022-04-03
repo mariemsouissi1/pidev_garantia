@@ -8,27 +8,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4722db87-9784-4a47-b10d-4ca1915b4a79" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/entities/ScoreType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/PiDev1Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/PiDev1Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/controllers/AppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/entities/Claim.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/entities/Claim.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/entities/Contract.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/entities/Contract.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/entities/Credit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/entities/Credit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/entities/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/entities/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/entities/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/entities/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/entities/Governorates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/entities/Governorates.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/entities/Indemnity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/entities/Indemnity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/entities/Offer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/entities/Offer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/entities/Sinister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/entities/Sinister.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/entities/customerAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/entities/CustomerAccount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/repositories/CustomerAccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/repositories/CustomerAccountRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/repositories/CustomerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/repositories/CustomerRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/services/CustomerAccountServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/services/CustomerAccountServiceImp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/services/CustomerServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/services/CustomerServiceImp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/services/EmployeeServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/services/EmployeeServiceImp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/services/ICustomerAccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/services/ICustomerAccountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/services/ICustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/infini2/services/ICustomerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/entities/ScoreType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/controllers/AppController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/entities/Claim.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/entities/Claim.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/entities/Contract.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/entities/Contract.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/entities/Credit.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/entities/Credit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/entities/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/entities/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/entities/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/entities/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/entities/Governorates.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/entities/Governorates.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/entities/Indemnity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/entities/Indemnity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/entities/Offer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/entities/Offer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/entities/Sinister.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/entities/Sinister.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/entities/customerAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/entities/CustomerAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/repositories/CustomerAccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/repositories/CustomerAccountRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/services/CustomerAccountServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/services/CustomerAccountServiceImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/services/CustomerServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/services/CustomerServiceImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/services/ICustomerAccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/services/ICustomerAccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/services/ICustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/services/ICustomerService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,6 +147,7 @@
       <workItem from="1647512039703" duration="1561000" />
       <workItem from="1647588148509" duration="433000" />
       <workItem from="1647597474468" duration="74239000" />
+      <workItem from="1649000117538" duration="691000" />
     </task>
     <servers />
   </component>

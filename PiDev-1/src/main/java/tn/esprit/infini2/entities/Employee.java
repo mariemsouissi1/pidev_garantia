@@ -53,7 +53,7 @@ public class Employee implements Serializable{
 	private employeeCategory employeeCategorys;
 
 	@OneToMany(cascade = CascadeType.ALL)
-	private Set<customerAccount> customerAccounts;
+	private Set<CustomerAccount> customerAccounts;
 
 	public Long getIdEmployee()
 	{
@@ -144,11 +144,11 @@ public class Employee implements Serializable{
 		this.employeeCategorys = employeeCategorys;
 	}
 
-	public Set<customerAccount> getCustomerAccounts() {
+	public Set<CustomerAccount> getCustomerAccounts() {
 		return customerAccounts;
 	}
 
-	public void setCustomerAccounts(Set<customerAccount> customerAccounts) {
+	public void setCustomerAccounts(Set<CustomerAccount> customerAccounts) {
 		this.customerAccounts = customerAccounts;
 	}
 

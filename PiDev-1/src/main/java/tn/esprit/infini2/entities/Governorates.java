@@ -14,7 +14,7 @@ public enum Governorates {
     Manouba,
     Kef,
     Mahdia,
-    Médenine,
+    Medenine,
     Monastir,
     Nabeul,
     Sfax,
