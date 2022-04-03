@@ -17,4 +17,6 @@ public interface ICustomerAccountService {
 	CustomerAccount retrieveCustomerAccount(Long id);
 
 	Float calculScore(Customer customer);
+
+
 }

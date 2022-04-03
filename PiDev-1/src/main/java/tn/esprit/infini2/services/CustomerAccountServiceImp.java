@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tn.esprit.infini2.dto.GeneralScoreStat;
 import tn.esprit.infini2.entities.Customer;
 import tn.esprit.infini2.entities.CustomerAccount;
 import tn.esprit.infini2.entities.Gender;
@@ -47,6 +48,13 @@ public class CustomerAccountServiceImp implements ICustomerAccountService{
 		return customerAccountRepository.findById(id).orElse(null);
 	}
 
+
+	public  List<GeneralScoreStat> customerScoreStat ()
+	{
+		List<GeneralScoreStat> generalScoreStats = customerAccountRepository.retrieveScoreStat();
+
+		return (generalScoreStats);
+	}
 
 	public int calculScoreGovernorate(Customer customer){
 
