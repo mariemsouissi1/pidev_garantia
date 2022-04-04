@@ -35,6 +35,15 @@ public class UserService {
             {
                 Boolean verif = customer.get().getPassword() != null && !customer.get().getPassword().isEmpty()
                 && passwordEncoder.matches( authenticationRequest.getPassword(),customer.get().getPassword());
+                if(!verif)
+                {
+                    int i=customer.get().getTries();
+                    i=i++;
+                    customer.get().setTries(i);
+                    if(i==3){
+                        customer.get().setActive(false);
+                    }
+                }
                 return verif;
             }
             else

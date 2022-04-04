@@ -17,6 +17,6 @@ public interface CustomerAccountRepository extends CrudRepository<CustomerAccoun
     @Query("SELECT c FROM CustomerAccount c where c.scoreType= :scoreType")
     List<CustomerAccount> retrieveCustomers(@Param("scoreType") ScoreType scoreType);
 
-   // @Query("SELECT COUNT(*) AS n, scoreType FROM customerAccount c GROUP BY c.scoreType")
+    @Query(value = "SELECT COUNT(*) AS n , score_type as scoreTypeName FROM customer_account c GROUP BY c.score_type",nativeQuery = true)
     List<GeneralScoreStat> retrieveScoreStat();
 }

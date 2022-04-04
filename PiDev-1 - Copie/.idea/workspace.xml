@@ -8,12 +8,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4722db87-9784-4a47-b10d-4ca1915b4a79" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/controllers/CustomerAccountController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/dto/GeneralScoreStat.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/entities/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/entities/Customer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/repositories/CustomerAccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/repositories/CustomerAccountRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/services/CustomerAccountServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/services/CustomerAccountServiceImp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/services/ICustomerAccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/services/ICustomerAccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../PiDev-1/src/main/java/tn/esprit/infini2/services/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -36,6 +36,7 @@ public class Customer implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private Governorates governorate;
 
+	private int tries;
 
 	public Governorates getGovernorate() {
 		return governorate;
@@ -161,5 +162,13 @@ public class Customer implements Serializable{
 
 	public void setGender(Gender gender) {
 		this.gender = gender;
+	}
+
+	public int getTries() {
+		return tries;
+	}
+
+	public void setTries(int tries) {
+		this.tries = tries;
 	}
 }
