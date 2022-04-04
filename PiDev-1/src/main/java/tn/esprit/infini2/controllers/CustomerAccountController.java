@@ -1,5 +1,6 @@
 package tn.esprit.infini2.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,9 +18,8 @@ public class CustomerAccountController {
     CustomerAccountServiceImp customerAccountService;
 
     @GetMapping ("/customerscorestat")
-    public List<GeneralScoreStat> getCustomerScoreStat ()
-    {
-        return (customerAccountService.customerScoreStat());
+    public List<GeneralScoreStat> getCustomerScoreStat () throws JsonProcessingException {
+        return (customerAccountService.retrieveScoreStat());
     }
 
 }

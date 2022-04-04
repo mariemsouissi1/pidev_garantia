@@ -1,5 +1,6 @@
 package tn.esprit.infini2.repositories;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface CustomerAccountRepository extends CrudRepository<CustomerAccount, Long>{
+public interface CustomerAccountRepository extends JpaRepository<CustomerAccount, Long> {
     @Query("SELECT c FROM CustomerAccount c where c.scoreType= :scoreType")
     List<CustomerAccount> retrieveCustomers(@Param("scoreType") ScoreType scoreType);
 

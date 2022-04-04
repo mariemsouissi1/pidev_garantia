@@ -7,6 +7,8 @@ public class GeneralScoreStat {
     private int n;
     private String scoreTypeName;
 
+    private String percent;
+
     public int getN() {
         return n;
     }
@@ -21,5 +23,13 @@ public class GeneralScoreStat {
 
     public void setScoreTypeName(String scoreTypeName) {
         this.scoreTypeName = scoreTypeName;
+    }
+
+    public String getPercent() {
+        return percent;
+    }
+
+    public void setPercent(String percent) {
+        this.percent = percent;
     }
 }

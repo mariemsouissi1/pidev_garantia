@@ -1,6 +1,8 @@
 package tn.esprit.infini2.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -58,7 +60,7 @@ public class AppController {
 
     }
 
-    //@EventListener(ApplicationReadyEvent.class)
+   // @EventListener(ApplicationReadyEvent.class)
     @PostMapping("/process_register_customer")
     public Customer processRegisterCustomer(@RequestBody  Customer customer) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -75,7 +77,7 @@ public class AppController {
         else if ((customerAccount.getScore()>7.5) && (customerAccount.getScore() <= 10))
             customerAccount.setScoreType(ScoreType.Excellent);
         customerAccountRepository.save(customerAccount);
-        //senderService.sendSimpleMessage(customer.getEmail(),"subject","body");
+      //  senderService.sendSimpleMessage(customer.getEmail(),"subject","body");
         return  customerRepo.save(customer);
     }
 
