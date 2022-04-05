@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="pidev - Copie/src/main/java"/>
+	<classpathentry kind="src" path="pidev - Copie/src/test/java"/>
+	<classpathentry kind="src" path="PiDev-1/PiDev-1/src/main/java"/>
+	<classpathentry kind="src" path="PiDev-1/PiDev-1/src/test/java"/>
+	<classpathentry kind="src" path="pidev/src/main/java"/>
+	<classpathentry kind="src" path="pidev/src/test/java"/>
+	<classpathentry kind="lib" path="pidev - Copie/.mvn/wrapper/maven-wrapper.jar"/>
+	<classpathentry kind="lib" path="PiDev-1/PiDev-1/.mvn/wrapper/maven-wrapper.jar"/>
+	<classpathentry kind="lib" path="pidev/.mvn/wrapper/maven-wrapper.jar"/>
+	<classpathentry kind="output" path="pidev/target/classes"/>
+</classpath>
