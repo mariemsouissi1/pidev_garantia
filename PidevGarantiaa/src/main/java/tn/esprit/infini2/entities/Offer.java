@@ -1,5 +1,6 @@
 package tn.esprit.infini2.entities;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -15,6 +16,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name="Offer")
 
@@ -28,14 +31,23 @@ public class Offer implements Serializable {
 	@Column(name="offer_id")
 	private Long offer_id;//cle primaire
 	private String offer_description;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+
 	private Date offer_expiration_date;
-	private String offer_image;
+	private File offer_image;
 	@Enumerated(EnumType.STRING)
 	private Offer_categorie offer_categorie;
 	private Boolean Offer_visibility;
 	@ManyToMany (mappedBy="offer")
-	private Set<customerAccount> O_customerAccount;
+	private Set<CustomerAccount> O_customerAccount;
 	
+	
+	public File getOffer_image() {
+		return offer_image;
+	}
+	public void setOffer_image(File offer_image) {
+		this.offer_image = offer_image;
+	}
 	public Boolean getOffer_visibility() {
 		return Offer_visibility;
 	}
@@ -60,17 +72,8 @@ public class Offer implements Serializable {
 	public void setOffer_expiration_date(Date offer_expiration_date) {
 		this.offer_expiration_date = offer_expiration_date;
 	}
-	@Transient
-	public String getPhotosImagePath() {
-		if (offer_image == null || offer_id == null) return null;
-		return "/user-photos/" + offer_id + "/" + offer_image;
-		}
-	public String getOffer_image() {
-		return offer_image;
-	}
-	public void setOffer_image(String offer_image) {
-		this.offer_image = offer_image;
-	}
+	
+
 	public Offer_categorie getOffer_categorie() {
 		return offer_categorie;
 	}

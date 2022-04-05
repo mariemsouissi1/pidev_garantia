@@ -5,25 +5,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 @Table(name="customerAccount")
-public class customerAccount implements Serializable{
-	/**
-	 * 
-	 */
+public class CustomerAccount implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,13 +20,25 @@ public class customerAccount implements Serializable{
 	private Date dateCreationCompte;
 	private Float solde;
 	private Float debit;
-	
+	private Float score;
+
+	public ScoreType getScoreType() {
+		return scoreType;
+	}
+
+	public void setScoreType(ScoreType scoreType) {
+		this.scoreType = scoreType;
+	}
+
+	@Enumerated(EnumType.STRING)
+	//@Column( nullable = false)
+	private ScoreType scoreType;
 	@OneToOne(mappedBy="customerAccount")
-	customer customer;
+    Customer customer;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="C_customerAccount")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy= "c_customerAccount")
 	private Set<Contract> contracts;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="S_customerAccount")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy= "s_customerAccount")
 	private Set<Sinister> sinister;
 	@OneToMany(mappedBy="customerCredit")
 	private List<Credit> customersCredits;
@@ -78,11 +76,19 @@ public class customerAccount implements Serializable{
 	public void setDebit(Float debit) {
 		this.debit = debit;
 	}
-	public customer getCustomer() {
+	public Customer getCustomer() {
 		return customer;
 	}
-	public void setCustomer(customer customer) {
+	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-	
+
+	public Float getScore() {
+		return score;
+	}
+
+	public void setScore(Float score) {
+		this.score = score;
+	}
+
 }

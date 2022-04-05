@@ -34,7 +34,7 @@ public class Claim implements Serializable {
 	private String claim_email;
 	
 	@ManyToOne 
-	customerAccount customerClaim;
+	CustomerAccount customerClaim;
 	
 	
 	

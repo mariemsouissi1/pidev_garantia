@@ -61,7 +61,7 @@ public class Indemnity implements Serializable{
 	@OneToOne(mappedBy="indemnity")
 	private Sinister sinister;
 	@ManyToOne
-	customerAccount  customer_account;
+	CustomerAccount  customer_account;
 	
 	
 	

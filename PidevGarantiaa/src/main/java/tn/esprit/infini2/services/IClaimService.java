@@ -41,6 +41,10 @@ public interface IClaimService {
 	Map<String, Double> statis_par_state();
 	
 	Map<String, Double> statis_par_type();
+
+	Map<String, Double> statis_map_pour(Map<String, Double> mAPClaims);
+
+	List<Claim> retrieveclaim_par_client(Long idClient);
 	 
 	 
 }

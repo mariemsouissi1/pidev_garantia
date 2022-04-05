@@ -71,6 +71,12 @@ public class ClaimServicelmpl  implements IClaimService{
 	public List<Claim> retrievenonvisible() {
 		return (List<Claim>) claimRepository.Retrievevisibility(false);
 	}	
+	
+////////////////////////////////retrieve claim non visible///////////////////////////////
+	public List<Claim> retrieveclaim_par_client(Long idclient) {
+	return (List<Claim>) claimRepository.Retrieve_claim_par_idclient(idclient);
+	}
+	
 ////////////////////////////////////traiter claim/////////////////////////////////////
 	public Claim treated_claim(Long id,String body) {//,EmailMessage email
 	Claim c=claimRepository.findById(id).get();
@@ -86,7 +92,15 @@ public class ClaimServicelmpl  implements IClaimService{
 	Claim_state cl=Claim_state.valueOf("Ongoing");
 	c.setClaim_state(cl);
 	updateClaim(c);
-	emailservice.sendEmail(c.getClaim_email(), "Ongoing treatment","Nous sommes en train de traiter votre reclamation");
+	emailservice.sendEmail(c.getClaim_email(), "Traitement en cours","Bonjour Monsieur/Madame,\r\n"
+			+ "\r\n"
+			+"Nous sommes en train de traiter votre reclamation,\r\n"
+			+ "\r\n"
+			+ "Merci de votre patience,\r\n"
+			+ "\r\n"
+			+ "Cordialement,\r\n"
+			+ "\r\n"
+			+ "Oumayma Bichiou");
 	return c;
 }
 ////////////////////////////////nbre claim par type contrat//////////////////////////////ma
@@ -139,7 +153,10 @@ public class ClaimServicelmpl  implements IClaimService{
 		return pour;
 	}
 
-////////////////////////////////////statistics/////////////////////////////////////////
+////////////////////////////////////statistics/////////////////////////////////////////////
+	
+                ////////////////////stat_claim_contrat/////////////////////////////
+
 @Override
 public Map<String, Double> stat_claim_contrat() {
 	Map<String, Double> nbrparcontrat = new HashMap<String, Double>();
@@ -206,6 +223,7 @@ public Map<String, Double> stat_claim_contrat() {
 
 			return nbrparcontrat;
 		}
+                      ////////////////////statis_par_state/////////////////////////////
 
 @Override
 public Map<String, Double> statis_par_state() {
@@ -218,15 +236,15 @@ public Map<String, Double> statis_par_state() {
 	int nbrtot=claimRepository.Nbclaimselonvisibility(true);
 	for(int i=0;i<nbrtot;i++)
 	{
-		if(claims.get(i).getClaim_contrat_type().toString()=="Treated")
+		if(claims.get(i).getClaim_state().toString()=="Treated")
 		{
 			nb1=nb1+1;
 		}
-		if(claims.get(i).getClaim_contrat_type().toString()=="Ongoing")
+		if(claims.get(i).getClaim_state().toString()=="Ongoing")
 		{
 			nb2=nb2+1;
 		}
-		if(claims.get(i).getClaim_contrat_type().toString()=="Untreated")
+		if(claims.get(i).getClaim_state().toString()=="Untreated")
 		{
 			nb3=nb3+1;
 		}
@@ -238,21 +256,23 @@ public Map<String, Double> statis_par_state() {
 
 	return nbrparstate;
 }
+                        ////////////////statis_par_type////////////////
+
 
 public Map<String, Double> statis_par_type() {
 	Map<String, Double> nbrparstate= new HashMap<String, Double>();
-//Treated,Ongoing,Untreated;
+//Reclamation,Complaint
 	Double nb1=(double) 0;
 	Double nb2=(double) 0;
 	List<Claim> claims=claimRepository.Retrievevisibility(true);
 	int nbrtot=claimRepository.Nbclaimselonvisibility(true);
 	for(int i=0;i<nbrtot;i++)
 	{
-		if(claims.get(i).getClaim_contrat_type().toString()=="Reclamation")
+		if(claims.get(i).getClaim_type().toString()=="Reclamation")
 		{
 			nb1=nb1+1;
 		}
-		if(claims.get(i).getClaim_contrat_type().toString()=="Complaint")
+		if(claims.get(i).getClaim_type().toString()=="Complaint")
 		{
 			nb2=nb2+1;
 		}
@@ -262,8 +282,8 @@ public Map<String, Double> statis_par_type() {
 	nbrparstate.put("Complaint",nb2);	
 
 	return nbrparstate;
-}
-/////////////////////////////////////statistics pourcentage////////////////////////////////
+	}
+                    /////////////////statistics pourcentage////////////////////////////////
 public Map<String, Double> statis_map_pour(Map<String, Double> map) {
     for (Iterator<Entry<String, Double>> iterator = map.entrySet().iterator(); iterator.hasNext();) {
 		Entry<String, Double> mapentry = iterator.next();

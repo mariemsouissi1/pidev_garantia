@@ -18,4 +18,6 @@ public interface IOfferService {
 	Offer desarchiverOffer(Long offerId);
 
 	Offer archiverOffer(Long offerId);
+
+	Long return_Offer_id(Offer u);
 }

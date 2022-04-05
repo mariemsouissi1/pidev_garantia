@@ -17,11 +17,10 @@ public class fileUplodeController {
 	    private OfferRepository repo;
 	     
 	    @PostMapping("/offer/save")
-	    public RedirectView saveUser(Offer offer,
-	            @RequestParam("image") MultipartFile multipartFile) throws IOException {
+	    public RedirectView saveUser(Offer offer,@RequestParam("image") MultipartFile multipartFile) throws IOException {
 	         
 	        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-	        offer.setOffer_image(fileName);
+	        //offer.setOffer_image(fileName);
 	         
 	        Offer savedUser = repo.save(offer);
 	 

@@ -2,14 +2,20 @@ package tn.esprit.infini2.services;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lombok.extern.slf4j.Slf4j;
 import tn.esprit.infini2.entities.Offer;
 import tn.esprit.infini2.repositories.OfferRepository;
+@Slf4j
+
 
 @Service
 public class OfferServicelmpl implements IOfferService {
+	private static final Logger log = LoggerFactory.getLogger(CreditServicelmpl.class);
 		@Autowired
 		OfferRepository offerRepository;
 		
@@ -43,6 +49,7 @@ public class OfferServicelmpl implements IOfferService {
 		@Override
 		public void deleteOffer(Long id) {
 			offerRepository.deleteById(id);
+			log.info("Offer deleted");
 		}
 		
 //////////////////////////////////archiver Offer//////////////////////////////////////
@@ -62,4 +69,8 @@ public class OfferServicelmpl implements IOfferService {
 	return c;
 }
 	
+	@Override
+	public Long return_Offer_id(Offer u) {
+		return u.getOffer_id();
+	}	
 }
