@@ -6,7 +6,7 @@ vehicule_insurance,
 medical_insurance,
 property_insurance,
 agriculture_insurance,
-value_insurance
+
 
 
 
