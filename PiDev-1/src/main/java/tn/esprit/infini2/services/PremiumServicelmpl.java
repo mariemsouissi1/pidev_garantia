@@ -162,8 +162,8 @@ public class PremiumServicelmpl implements IPremiumService
     		List<Contract> lc= contractService.findCustomerContracts(id_customer);
     		for(Contract itr :lc )
     		{
-    			//if(itr.getCreationDate()== itr.getC_customerAccount().getCustomer().getBirthDate())
-    			if (true)
+    			if(itr.getCreationDate()== itr.getC_customerAccount().getCustomer().getBirthDate())
+    			//if (true)
     			{
         		results_map.put(itr.getIdContract(),  Double.valueOf(itr.getPrimeContract()*0.95));
     			itr.setPrimeContract(itr.getPrimeContract()*0.95);
