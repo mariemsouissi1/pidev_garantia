@@ -34,6 +34,7 @@ public class Contract implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private Type_Contract typeContract;
 	private String documentContract;
+	private Float plafond ;
 	@OneToOne
 	private Premium premium;
 	@ManyToOne
@@ -74,6 +75,13 @@ public class Contract implements Serializable{
 	public void setDocumentContract(String documentContract) {
 		this.documentContract = documentContract;
 	}
+	public Float getPlafond() {
+		return plafond;
+	}
+	public void setPlafond(Float plafond) {
+		this.plafond = plafond;
+	}
+	
 
 }
 
