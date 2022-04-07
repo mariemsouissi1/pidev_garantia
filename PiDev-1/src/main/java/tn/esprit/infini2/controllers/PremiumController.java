@@ -1,5 +1,8 @@
 package tn.esprit.infini2.controllers;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import tn.esprit.infini2.entities.Contract;
 import tn.esprit.infini2.entities.Premium;
+import tn.esprit.infini2.entities.customer;
 import tn.esprit.infini2.services.IPremiumService;
 
 @RestController
@@ -66,10 +70,32 @@ public class PremiumController {
 	// http://localhost:8089/SpringMVC/premium/calculatePremium
 		@GetMapping("/calculatePremium")
 		@ResponseBody
-	public Double calculatePremium(@RequestParam double PPValue , @RequestParam String typeA ,@RequestParam long salary ) {
-		Double Pr = premiumService.calculatePremium(PPValue,typeA,salary);
+	public double calculatePremium(@RequestParam String typeA , @RequestParam String BeginigOfYear ,@RequestParam String endDate, customer customer, double FNG,double comission ) {
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-yyyy");
+			double Pr = premiumService.calculatePremium(typeA , LocalDate.parse(BeginigOfYear,formatter), LocalDate.parse(endDate,formatter),  customer,  FNG,  comission);
 		return Pr;
 	}
 	
+		
+		
+		// http://localhost:8089/SpringMVC/premium/CalculatePPValuePrimium
+		@GetMapping("/CalculatePPValuePrimium")
+		@ResponseBody
+	public double CalculatePPValuePrimium (@RequestParam String BeginDate,@RequestParam String endDate) {
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-yyyy");
+		double Pr = premiumService.CalculatePPValuePrimium(LocalDate.parse(BeginDate,formatter),  LocalDate.parse(endDate,formatter));
+		return Pr;
+	}
+		
+		
+		
+		// http://localhost:8089/SpringMVC/premium/CalculateDiscount
+		@GetMapping("/CalculateDiscount")
+		@ResponseBody
+	public HashMap<Long, Double> CalculateDiscount (@RequestParam Long id_customer) {
+		 return premiumService.CalculateDiscount( id_customer);
+		 
+		
+	}
 
 }

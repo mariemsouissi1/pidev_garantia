@@ -55,8 +55,9 @@ public class ContractServicelmpl implements IContractService
 			//Date dt = new Date();
 			LocalDate lt = LocalDate.now();
 			c.setCreationDate(lt);
+			contractRepository.save(c);
 		    c.setExpirationDate(lt.plusDays(c.getDurationContract()));
-		
+		   
 			contractRepository.save(c);
 			return c;
 		}
@@ -114,12 +115,27 @@ public class ContractServicelmpl implements IContractService
 
 	        Font fontParagraph = FontFactory.getFont(FontFactory.HELVETICA);
 	        fontParagraph.setSize(12);
-
-	        Paragraph paragraph2 = new Paragraph("Ce contrat appartient à", fontParagraph);
-	        paragraph2.setAlignment(Paragraph.ALIGN_LEFT);
-	        
 	        Contract contract = (Contract) contractInfo.get("contract");
 	        customer _customer = (customer) contractInfo.get("customer");
+	        String content = "Nous soussignés, compagnie d’assurance GARANTIA d’une part et Mr/Mme" + 
+	        _customer.getFirstName() +" "+ _customer.getLastName() + " d’autrepart, " + "ayant le numéro de CIN : " + _customer.getCin()
+	        		+ "somme liés par la police d’assurance n°"+contract.getIdContract() +" ."
+	                + "La police souscrite concerne le risque suivant :" + contract.getTypeContract()
+	        		+ "ant : ....................................\r\n"
+	        		+ "Le remboursement en cas de sinistre s’effectuera selon les conditions suivantes\r\n"
+	        		+ " \r\n"
+	        		+ ": l’assureur verse àl’assuré une indemnité. Le paiement de la prime qui est de " + contract.getPrimeContract()
+	        		+ " par l’assuré se fera le 03 Mars de chaque\r\n"
+	        		+ "année.\r\n"
+	        		+ " \r\n"
+	        		+"Ce contrat est valide la période du "+ contract.getCreationDate() +" au " + contract.getExpirationDate()
+	        		+ "Fait à Tunis le" + contract.getCreationDate()
+	        		+"Lu et approuvé Lu et approuvé Assuré Assureur\r\n"
+	        		+ "";
+	        Paragraph paragraph2 = new Paragraph(content, fontParagraph);
+	        paragraph2.setAlignment(Paragraph.ALIGN_LEFT);
+	        
+	       
 	        
 	        
 	        
@@ -129,7 +145,11 @@ public class ContractServicelmpl implements IContractService
 	        document.add(paragraph);
 	        document.add(paragraph2);
 	        document.add(paragraph3);
+	        //contract.setDocumentContract(document.toString());
 	        document.close();
+	        contract.setDocumentContract(content);
+	        
+	        contractRepository.save(contract);
 	    }
 
 
@@ -209,6 +229,25 @@ public class ContractServicelmpl implements IContractService
 			
 			return AllListe;
 		
+		}
+		
+
+		
+		@Override
+		public List<Contract> findCustomerContracts(long ind) {
+			List<Contract> ls= new ArrayList<Contract>();
+			ls=(List<Contract>) contractRepository.findAll();
+			List<Contract> retoure = new ArrayList<Contract>();
+			for(Contract itr :ls)
+			{
+			
+			if (itr.getC_customerAccount().getCustomer().getIdCustomer() ==ind)
+				retoure.add(itr);
+			}
+			
+			
+			
+			return retoure;
 		}
 		
 		

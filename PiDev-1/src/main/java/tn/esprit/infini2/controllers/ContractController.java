@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -72,8 +73,8 @@ public class ContractController {
 	Contract contract = contractService.addContract(o);
 	return contract;
 	}
-	// http://localhost:8089/SpringMVC/contract/add-contract/1
-		@PostMapping("/add-contract/++")
+	// http://localhost:8089/SpringMVC/contract/add-contractplus
+		@PostMapping("/add-contractplus/{id}")
 		@ResponseBody
 	public Contract addContract(@RequestBody Contract c, @PathVariable("id") Long idPremium)
 	{
@@ -103,7 +104,7 @@ public class ContractController {
 				return listContract;
 			}
 			
-			//http://localhost:8089/SpringMVC/contract/pdf/generate
+			//http://localhost:8089//pidevmariem/contract/pdf/generate
 			 @GetMapping("/pdf/generate/{contractID}")
 			 @ResponseBody
 			    public void export(HttpServletResponse response, @PathVariable("contractID") Long contractID) throws IOException {
@@ -142,5 +143,4 @@ public class ContractController {
 					return viewContractsByTypes;
 				}
 			
-
 }
