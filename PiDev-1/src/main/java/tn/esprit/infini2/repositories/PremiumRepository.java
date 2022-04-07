@@ -4,8 +4,8 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import tn.esprit.infini2.entities.Premium;
-@Repository
 
+@Repository
 public interface PremiumRepository extends CrudRepository<Premium, Long>{
 
 }

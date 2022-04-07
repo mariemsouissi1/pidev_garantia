@@ -4,19 +4,18 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tn.esprit.infini2.entities.Provisions;
 import tn.esprit.infini2.entities.Sinister;
 import tn.esprit.infini2.entities.SinisterStatus;
-import tn.esprit.infini2.repositories.ContractRepository;
+
 import tn.esprit.infini2.repositories.ProvisionsRepository;
 import tn.esprit.infini2.repositories.SinisterRepository;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 @Service
 public class ProvisionsServicelmpl implements IProvisionsService
@@ -77,12 +76,12 @@ public class ProvisionsServicelmpl implements IProvisionsService
 		
 		public double CalculateProvisionsNonConnues(LocalDate BeginigOfYear, LocalDate endDate){
 			List<Sinister> ls=(List<Sinister>) sinisterRepository.findAll();
-			Logger.getGlobal().log(Level.INFO, "test");
+			//Logger.getGlobal().log(Level.INFO, "test");
 			double ProvNC=50;
-			Logger.getGlobal().log(Level.INFO, "BeginigOfYear: "+BeginigOfYear.toString()+ " endDate: " + endDate.toString());
+			//Logger.getGlobal().log(Level.INFO, "BeginigOfYear: "+BeginigOfYear.toString()+ " endDate: " + endDate.toString());
 			for(Sinister itr :ls)
 			{
-				Logger.getGlobal().log(Level.INFO, "in Sinister for Loop getSinisterDate: "+itr.getSinisterDate().toString());
+				//Logger.getGlobal().log(Level.INFO, "in Sinister for Loop getSinisterDate: "+itr.getSinisterDate().toString());
 			
 			if((itr.getSinisterDate().isAfter(BeginigOfYear))&&(itr.getSinisterDate().isBefore(endDate))&&(itr.getSinisterStatus()==SinisterStatus.RESOLVED))
 			
