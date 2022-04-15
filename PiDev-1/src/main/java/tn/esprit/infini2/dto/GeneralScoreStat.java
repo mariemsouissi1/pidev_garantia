@@ -6,7 +6,6 @@ public class GeneralScoreStat {
 
     private int n;
     private String scoreTypeName;
-
     private String percent;
 
     public int getN() {
