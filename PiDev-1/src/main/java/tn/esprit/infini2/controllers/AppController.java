@@ -71,7 +71,7 @@ public class AppController {
         CustomerAccount customerAccount= new CustomerAccount();
         customerAccount.setScore(customerAccountService.calculScore(customer));
         if ((customerAccount.getScore()>0) && (customerAccount.getScore() <= 2.5))
-        customerAccount.setScoreType(ScoreType.Mediocre);
+            customerAccount.setScoreType(ScoreType.Mediocre);
         else if ((customerAccount.getScore()>2.5) && (customerAccount.getScore() <= 5))
             customerAccount.setScoreType(ScoreType.Average);
         else if ((customerAccount.getScore()>5) && (customerAccount.getScore() <= 7.5))
@@ -92,7 +92,7 @@ public class AppController {
     @PreAuthorize("hasAuthority(@userService.Employee())")
     @GetMapping("/customersList")
     public List<Customer> customersList() {
-        List<Customer> list = customerRepo.findAll();
+        List<Customer> list = (List<Customer>) customerRepo.findAll();
         return list;
     }
 

@@ -34,23 +34,23 @@ public class SecurityController {
 	public String hello2() {
 		return "Hello customer  world!!!";
 	}
-	
+
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
 	public ResponseEntity<String> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
 
 
-	if(userService.verifAuthentifaction(authenticationRequest)) {
+		if(userService.verifAuthentifaction(authenticationRequest)) {
 
-		final UserDetails userDetails = userDetailsService
-				.loadUserByUsername(authenticationRequest.getUsername());
+			final UserDetails userDetails = userDetailsService
+					.loadUserByUsername(authenticationRequest.getUsername());
 
-		final String jwt = jwtTokenUtil.generateToken(userDetails);
+			final String jwt = jwtTokenUtil.generateToken(userDetails);
 
-		return ResponseEntity.ok(jwt);
-	}
+			return ResponseEntity.ok(jwt);
+		}
 		throw new Exception("Incorrect username or password");
 	}
-	
 
-	}
+
+}
 

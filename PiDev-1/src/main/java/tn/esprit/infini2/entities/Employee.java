@@ -21,7 +21,7 @@ import javax.persistence.TemporalType;
 @Table(name="employee")
 public class Employee implements Serializable{
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -152,5 +152,5 @@ public class Employee implements Serializable{
 		this.customerAccounts = customerAccounts;
 	}
 
-	
+
 }

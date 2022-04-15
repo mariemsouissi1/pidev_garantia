@@ -34,8 +34,8 @@ public class CustomerAccount implements Serializable{
 	//@Column( nullable = false)
 	private ScoreType scoreType;
 	@OneToOne(mappedBy="customerAccount")
-    Customer customer;
-	
+	Customer customer;
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy= "c_customerAccount")
 	private Set<Contract> contracts;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy= "s_customerAccount")
@@ -45,20 +45,7 @@ public class CustomerAccount implements Serializable{
 	@OneToMany(mappedBy="customerClaim")
 	private List<Claim> customersClaimss;
 	@ManyToMany
-	private List<Offer> offers;
-	
-	public List<Offer> getOffers() {
-		return offers;
-	}
-
-	public void setOffers(List<Offer> offers) {
-		this.offers = offers;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
+	private Set<Offer> offer;
 	public Long getIdCustomerAccount() {
 		return idCustomerAccount;
 	}
