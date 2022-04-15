@@ -14,4 +14,8 @@ public interface IChatService {
 	Chat updateChat(Chat u);
 
 	Chat retrieveChat(Long id);
+
+	List<Chat> retrieveConversationsdistinct(Long id1, Long id2);
+
+	List<Chat> retrieveConversation(Long id1, Long id2);
 }

@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 @Entity
 @Table(name="Claim")
-public class Claim  implements Serializable {
+public class Claim implements Serializable {
 	/**
 	 * 
 	 */
@@ -24,11 +24,38 @@ public class Claim  implements Serializable {
 	private Long claim_id;//cle primaire
 	private String claim_description;
 	@Enumerated(EnumType.STRING)
-	private Claim_state claim_state;
+	public Claim_state claim_state;
+	//Treated,Ongoing,Untreated
 	@Enumerated(EnumType.STRING)
 	private Claim_type claim_type;
-	@ManyToOne
+	@Enumerated(EnumType.STRING)
+	private Claim_contrat_type claim_contrat_type;
+	private Boolean claim_visibility;
+	private String claim_email;
+	
+	@ManyToOne 
 	CustomerAccount customerClaim;
+	
+	
+	
+	public String getClaim_email() {
+		return claim_email;
+	}
+	public void setClaim_email(String claim_email) {
+		this.claim_email = claim_email;
+	}
+	public Claim_contrat_type getClaim_contrat_type() {
+		return claim_contrat_type;
+	}
+	public void setClaim_contrat_type(Claim_contrat_type claim_contrat_type) {
+		this.claim_contrat_type = claim_contrat_type;
+	}
+	public Boolean getClaim_visibility() {
+		return claim_visibility;
+	}
+	public void setClaim_visibility(Boolean claim_visibility) {
+		this.claim_visibility = claim_visibility;
+	}
 	public Long getClaim_id() {
 		return claim_id;
 	}

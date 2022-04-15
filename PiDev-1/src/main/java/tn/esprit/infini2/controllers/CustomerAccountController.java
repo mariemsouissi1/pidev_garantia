@@ -1,6 +1,5 @@
 package tn.esprit.infini2.controllers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,8 +19,9 @@ public class CustomerAccountController {
 
     @PreAuthorize("hasAuthority(@userService.Employee())")
     @GetMapping ("/customerscorestat")
-    public List<GeneralScoreStat> getCustomerScoreStat () throws JsonProcessingException {
-        return (customerAccountService.retrieveScoreStat());
+    public List<GeneralScoreStat> getCustomerScoreStat ()
+    {
+        return (customerAccountService.customerScoreStat());
     }
 
 }

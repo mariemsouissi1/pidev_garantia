@@ -37,7 +37,7 @@ public class Credit {
 	@OneToMany(mappedBy="credit")
 	private List<Transaction> transactions;
 
-	@ManyToOne
+	@ManyToOne 
 	CustomerAccount customerCredit;
 
 

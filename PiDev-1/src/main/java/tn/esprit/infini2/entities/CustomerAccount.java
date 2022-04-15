@@ -45,7 +45,20 @@ public class CustomerAccount implements Serializable{
 	@OneToMany(mappedBy="customerClaim")
 	private List<Claim> customersClaimss;
 	@ManyToMany
-	private Set<Offer> offer;
+	private List<Offer> offers;
+	
+	public List<Offer> getOffers() {
+		return offers;
+	}
+
+	public void setOffers(List<Offer> offers) {
+		this.offers = offers;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	public Long getIdCustomerAccount() {
 		return idCustomerAccount;
 	}

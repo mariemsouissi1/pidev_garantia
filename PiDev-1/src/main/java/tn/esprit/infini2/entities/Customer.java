@@ -1,9 +1,10 @@
 package tn.esprit.infini2.entities;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Date;
 import javax.persistence.*;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name="customer")
@@ -20,7 +21,7 @@ public class Customer implements Serializable{
 	@Column(name = "last_name", nullable = false, length = 20)
 	private String lastName;
 
-	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date birthDate;
 
 	private int phoneNumber;
@@ -39,9 +40,6 @@ public class Customer implements Serializable{
 
 	private int tries;
 
-	//@Temporal(TemporalType.DATE)
-	private LocalDateTime lastFailedAuthentication;
-
 	public Governorates getGovernorate() {
 		return governorate;
 	}
@@ -51,7 +49,7 @@ public class Customer implements Serializable{
 	}
 
 	@Column
-	private Boolean active=true;
+	private Boolean active=false;
 
 	@Column(name="email",nullable = false,unique = true, length = 45)
 	private String email;
@@ -174,13 +172,5 @@ public class Customer implements Serializable{
 
 	public void setTries(int tries) {
 		this.tries = tries;
-	}
-
-	public LocalDateTime getLastFailedAuthentication() {
-		return lastFailedAuthentication;
-	}
-
-	public void setLastFailedAuthentication(LocalDateTime lastFailedAuthentication) {
-		this.lastFailedAuthentication = lastFailedAuthentication;
 	}
 }

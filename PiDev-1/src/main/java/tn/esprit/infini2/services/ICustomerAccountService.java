@@ -6,6 +6,7 @@ import tn.esprit.infini2.entities.Customer;
 import tn.esprit.infini2.entities.CustomerAccount;
 
 public interface ICustomerAccountService {
+
 	List<CustomerAccount> retrieveAllCustomerAccounts();
 
 	CustomerAccount addCustomerAccount(CustomerAccount c);
@@ -17,6 +18,5 @@ public interface ICustomerAccountService {
 	CustomerAccount retrieveCustomerAccount(Long id);
 
 	Float calculScore(Customer customer);
-
 
 }
