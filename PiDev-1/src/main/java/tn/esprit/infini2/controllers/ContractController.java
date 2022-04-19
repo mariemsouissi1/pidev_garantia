@@ -38,12 +38,14 @@ public class ContractController {
 	IContractService contractService;
 
 	// http://localhost:8089/SpringMVC/contract/retrieve-all-contracts
+	@PreAuthorize("hasAuthority(@userService.Employee())")
 	@GetMapping("/retrieve-all-contracts")
 	@ResponseBody
 	public List<Contract> getContracts() {
 	List<Contract> listContracts = contractService.retrieveAllContracts();
 	return listContracts;}
 	// http://localhost:8089/SpringMVC/contract/retrieve-contract/8
+	@PreAuthorize("hasAuthority(@userService.Employee())")
 	@GetMapping("/retrieve-contract/{contract-id}")
 	@ResponseBody
 	public Contract retrieveContract(@PathVariable("contract-id") Long contractId) {
@@ -59,6 +61,7 @@ public class ContractController {
 	}
 
 	// http://localhost:8089/SpringMVC/contract/modify-contract
+	@PreAuthorize("hasAuthority(@userService.Employee())")
 	@PutMapping("/modify-contract")
 	@ResponseBody
 	public Contract modifyContract(@RequestBody Contract contract) {
@@ -66,6 +69,7 @@ public class ContractController {
 	}
 
 	// http://localhost:8089/SpringMVC/contract/add-contract
+	@PreAuthorize("hasAuthority(@userService.Employee())")
 	@PostMapping("/add-contract")
 	@ResponseBody
 	public Contract addContract(@RequestBody Contract o)
@@ -74,6 +78,7 @@ public class ContractController {
 	return contract;
 	}
 	// http://localhost:8089/SpringMVC/contract/add-contractplus
+	@PreAuthorize("hasAuthority(@userService.Employee())")
 		@PostMapping("/add-contractplus/{id}")
 		@ResponseBody
 	public Contract addContract(@RequestBody Contract c, @PathVariable("id") Long idPremium)
@@ -82,6 +87,7 @@ public class ContractController {
 		return contract;
 		}
 	//http://localhost:8089/SpringMVC/contract/countcontractbytype
+	@PreAuthorize("hasAuthority(@userService.Employee())")
 			@GetMapping("/countcontractbytype/{type}")	
 			@ResponseBody
 			public int countcontractbytype(@PathVariable("type") String type) {
@@ -94,6 +100,8 @@ public class ContractController {
 			
 			
 			//http://localhost:8089/SpringMVC/contract/findcontractbytype
+	@PreAuthorize("hasAuthority(@userService.Employee())")
+			@PreAuthorize("hasAuthority(@userService.Employee())")
 			@GetMapping("/findcontractbytype/{type}")	
 			@ResponseBody
 			public List<Contract> findContractByType(@PathVariable("type") String type) {
@@ -124,6 +132,7 @@ public class ContractController {
 			        this.contractService.export(response, contractInfo );
 			    }
 				//http://localhost:8089/SpringMVC/contract/CountContractsBetween
+			 @PreAuthorize("hasAuthority(@userService.Employee())")
 				@GetMapping("/CountContractsBetween")	
 				@ResponseBody
 				public int CountContractsBetween(@RequestParam String EndDate, @RequestParam String BiginingDate) {
@@ -135,6 +144,7 @@ public class ContractController {
 				}
 				 
 				//http://localhost:8089/SpringMVC/contract/viewContractsByTypes
+			 @PreAuthorize("hasAuthority(@userService.Employee())")
 				@GetMapping("/viewContractsByTypes")	
 				@ResponseBody
 				public HashMap<Type_Contract, Object> viewContractsByTypes() {

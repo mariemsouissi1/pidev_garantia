@@ -15,9 +15,32 @@ public class PiDev1Application {
 	public static void main(String[] args) {
 		SpringApplication.run(PiDev1Application.class, args);
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	@EventListener(ApplicationReadyEvent.class)
 	public void sendMail(){
-	senderService.sendSimpleMessage("mohamed.hachicha@esprit.tn","subject","body");
+		senderService.sendSimpleMessage("mohamed.hachicha@esprit.tn","Confirmation email","Congrats! You're now an official customer of Garantia!");
 	}
 
 }
