@@ -3,6 +3,8 @@ package tn.esprit.infini2.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +20,9 @@ import tn.esprit.infini2.entities.Credit;
 import tn.esprit.infini2.services.ICreditService;
 import tn.esprit.infini2.services.IEmailServiceCredit;
 
+
+
+@CrossOrigin(origins="http://localhost:4200")
 @RestController
 @RequestMapping("/credit")
 public class CreditController {
@@ -28,26 +33,26 @@ public class CreditController {
 	
 //////////////////////////////////////REQUEST CREDIT PER CUSTOMER///////////////////////////////////////////////////////
 	
-	// http://localhost:8087/pidevmariem/credit/request-credit-id/idCustomerAccount
+	@PreAuthorize("hasAuthority(@userService.Customer())")
+	// http://localhost:8087/PIDEV_GARANTIA/credit/request-credit-id/idCustomerAccount
 	@PostMapping("/request-credit-id/{id-customer}")
 	@ResponseBody
 	public Credit requestCreditCustomer(@RequestBody Credit c, @PathVariable("id-customer") long idCustomerAccount)
 	{
-	// credit = CreditService.requestCredit(c, idCustomerAccount);
-	//iEmailService.sendEmailRequest(credit.getCustomerCredit().getEmailAccount(), credit);
-//	return credit;
-	return null;
-
+	Credit credit = CreditService.requestCredit(c, idCustomerAccount);
+	iEmailService.sendEmailRequest(credit.getCustomerCredit().getEmailAccount(), credit);
+	return credit;
 	}
 	
 /////////////////////////////////////////VERIFICATION CREDIT////////////////////////////////////////////
 	
-	// http://localhost:8087/pidevmariem/credit/confirm-credit/1/1
+	@PreAuthorize("hasAuthority(@userService.Employee())")
+	// http://localhost:8087/PIDEV_GARANTIA/credit/confirm-credit/1/1
 	@PutMapping("/confirm-credit/{id-customer}/{id-credit}")
 	@ResponseBody
 	public boolean verifCredit(@PathVariable("id-customer") long idCustomerAccount, @PathVariable("id-credit") long idC) {
 		boolean verif=false;
-		/*List <Credit> listcredit = CreditService.retrieveCreditsByCustomerAccountId(idCustomerAccount);
+		List <Credit> listcredit = CreditService.retrieveCreditsByCustomerAccountId(idCustomerAccount);
 			for (Credit c : listcredit) {
 				if (c.getIdCredit() == idC) {
 					
@@ -59,26 +64,25 @@ public class CreditController {
 				}
 			}
 		}
-		return verif;*/
-		return false;
+		return verif;
 
 		}
 
 /////////////////////UPDATE WITH CONTROL///////////////////////////////////////////
 	
-	// http://localhost:8087/pidevmariem/credit/update-credit/idCredit
+	@PreAuthorize("hasAuthority(@userService.Employee())")
+	// http://localhost:8087/PIDEV_GARANTIA/credit/update-credit/idCredit
 	@PutMapping("/update-credit/{idCredit}")
 	@ResponseBody
 	public Credit refreshCredit(@RequestBody Credit c,@PathVariable("idCredit") long idCredit)
 	{
-		return c;
-	//	return CreditService.updateCredit(idCredit,c);
+		return CreditService.updateCredit(idCredit,c);
 	}
 	
 	
 //////////////////////////GET ALL CREDITS ////////////////////////
-	
-	// http://localhost:8087/pidevmariem/credit/retrieve-all-credits/
+	@PreAuthorize("hasAuthority(@userService.Employee(),@userService.Customer())")
+	// http://localhost:8087/PIDEV_GARANTIA/credit/retrieve-all-credits/
 	@GetMapping("/retrieve-all-credits")
 	@ResponseBody
 	public List<Credit> retrieveAllCredits (){
@@ -86,8 +90,8 @@ public class CreditController {
 		}
 	
 //////////////////////////GET CREDIT BY ID CREDIT/////////////////////////////
-	
-	// http://localhost:8087/pidevmariem/credit/retrieve-credit/3
+	@PreAuthorize("hasAuthority(@userService.Employee(),@userService.Customer())")
+	// http://localhost:8087/PIDEV_GARANTIA/credit/retrieve-credit/3
 	@GetMapping("/retrieve-credit/{id-credit}")
 	@ResponseBody
 	public Credit retrieveCredit(@PathVariable("id-credit") long idCredit){
@@ -95,18 +99,17 @@ public class CreditController {
 	}
 
 ///////////////////GET ALL CREDITS BY ID CUSTOMER////////////////////////////////////
-
-	// http://localhost:8087/pidevmariem/credit/retrieve-credit-customer-id/1
+	@PreAuthorize("hasAuthority(@userService.Employee())")
+	// http://localhost:8087/PIDEV_GARANTIA/credit/retrieve-credit-customer-id/1
 	@GetMapping("/retrieve-credit-customer-id/{id-customer}")
 	@ResponseBody
 	public List<Credit> retrieveCreditByCustomer(@PathVariable("id-customer") long idCustomerAccount){
-		return null;
-		//return CreditService.retrieveCreditsByCustomerAccountId(idCustomerAccount);
+		return CreditService.retrieveCreditsByCustomerAccountId(idCustomerAccount);
 	}
 
 ///////////////////DELETE WITH CONTROL//////////////////////////////////
-	
-	// http://localhost:8087/pidevmariem/credit/supp-credit/3
+	@PreAuthorize("hasAuthority(@userService.Employee())")
+	// http://localhost:8087/PIDEV_GARANTIA/credit/supp-credit/3
 	@DeleteMapping("/supp-credit")
 	@ResponseBody
 	public void suppCredit(@RequestParam long idCredit){
@@ -115,16 +118,17 @@ public class CreditController {
 	
 ////////////////////////////CLOSE CREDIT///////////////////////////////////////
 
+	// http://localhost:8087/PIDEV_GARANTIA/credit/close-credit/1
+	@PreAuthorize("hasAuthority(@userService.Employee())")
 	@PutMapping("/close-credit/{id-credit}")
 	@ResponseBody
 	public String closeCredit(@PathVariable("id-credit") long idC) {
-		return null;
-		/*if (CreditService.closeCredit(idC) == true) {
+		if (CreditService.closeCredit(idC) == true) {
 			return "Paid Credit";
 		}
 		else {
 			return "Unpaid Credit";
-		}	*/		
+		}			
 	}
 
 }

@@ -17,5 +17,5 @@ public interface IEmailServiceCredit {
 	
 	void sendEmailwithAttachment(); 
 	
-	int generateCode();
+//	int generateCode();
 }

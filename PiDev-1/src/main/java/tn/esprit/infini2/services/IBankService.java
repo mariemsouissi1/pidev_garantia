@@ -5,9 +5,10 @@ import java.util.List;
 import tn.esprit.infini2.entities.Bank;
 
 
+
 public interface IBankService {
 	
-	long addBank(Bank bank);
+	public String addBank(Bank bank, String NameBank); 
 	
 	Bank updateBank(long idBank, Bank bank);
 

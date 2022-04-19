@@ -17,6 +17,8 @@ import tn.esprit.infini2.entities.CustomerAccount;
 
 
 
+
+
 @Service
 public class MailServiceImpl implements IMailService {
 
@@ -174,8 +176,8 @@ public class MailServiceImpl implements IMailService {
 				+ "                        </table>\n" + "<p>We hope you are doing well ! </p>\n"                       
 				+ "                        <p>We are now pleased to inform you that you have a request identified by, "
 				+ customer.getIdCustomerAccount() + " from our client Mr/Ms " + 
-			//			" " + customer.getFirstNameCustomer() +" "+ customer.getLastNameCustomer() + " and you find the attached simulation report.</p>\n"
-				"                        <p>If you wanted to answer it click on this link: .</p>\n"
+						" " + customer.getFirstNameCustomer() +" "+ customer.getLastNameCustomer() + " and you find the attached simulation report.</p>\n"
+				+ "                        <p>If you wanted to answer it click on this link: .</p>\n"
 				+ "                      <h5>link <a href=\"http://localhost:4200/Session/Connected!1/Home/Agent/Confirm\">see details here!</a>  " + "</h5>"
 
 				+ "                        <p>Thanks.</p>\n"
@@ -204,7 +206,7 @@ public class MailServiceImpl implements IMailService {
 	
 		//
 		helper.setTo(agent.getEmail());
-		//helper.setSubject("Requesting simulation from : "+ customer.getFirstNameCustomer() + customer.getLastNameCustomer());
+		helper.setSubject("Requesting simulation from : "+ customer.getFirstNameCustomer() + " " + customer.getLastNameCustomer());
 		helper.setText(messaage, messaage);
 		
 		File file = new File("C:\\Loans Simulations\\"+ attachement);

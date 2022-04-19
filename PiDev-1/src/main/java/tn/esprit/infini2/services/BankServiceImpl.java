@@ -1,5 +1,6 @@
 package tn.esprit.infini2.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import tn.esprit.infini2.entities.Bank;
 import tn.esprit.infini2.repositories.BankRepository;
+
+
 
 
 
@@ -22,11 +25,21 @@ public class BankServiceImpl implements IBankService {
 /////////////////////////ADD/////////////////////
 
 	@Override
-	public long addBank(Bank bank) {
-		 log.info("Inside Add Bank");
-		bankRepository.save(bank);
-		return bank.getIdBank();
-	}
+	public String addBank(Bank bank, String NameBank) {
+		log.info("Inside Add Bank");
+		List<Bank> banks= bankRepository.getAllBanks();
+		List<String> bankNames = new ArrayList<>();
+		for (int i=0; i<banks.size(); i++) {
+			bankNames.add(banks.get(i).getNameBank());
+		}
+			if (bankNames.contains(NameBank)) {
+				return "Bank exists already !" ;
+			}
+			else {
+				bankRepository.save(bank);
+				return "Bank added successfullly";
+			}
+		}
 
 /////////////////////////UPDATE WITH CONTROL/////////////////////
 

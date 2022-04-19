@@ -4,6 +4,7 @@ import java.util.List;
 
 import tn.esprit.infini2.entities.Agent;
 
+
 public interface IAgentService {
 	
 	void addAgent(Agent agent,long idBank);

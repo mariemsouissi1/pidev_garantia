@@ -32,6 +32,7 @@ import tn.esprit.infini2.entities.LoanSimulation;
 
 
 
+
 @Service
 public class PdfLoanServiceImpl implements IPdfLoanService {
 
@@ -93,9 +94,8 @@ public class PdfLoanServiceImpl implements IPdfLoanService {
 		espace.setAlignment(Element.ALIGN_LEFT);
 		
 //////////////////////PARAGRAPHE 1/////////////////////////////////////////
-		Paragraph para1 = new Paragraph("Mr,Mms " );
-//+ simulation.getCustomerAccountLoan().getFirstNameCustomer()
-			//	+ " " + simulation.getCustomerAccountLoan().getLastNameCustomer(), catFont15B);
+		Paragraph para1 = new Paragraph("Mr,Mms " + simulation.getCustomerAccountLoan().getFirstNameCustomer()
+				+ " " + simulation.getCustomerAccountLoan().getLastNameCustomer(), catFont15B);
 		para1.setAlignment(Element.ALIGN_LEFT);
 		Paragraph para2 = new Paragraph(
 				"Garantia team is glad to provide a simulation system "
@@ -117,16 +117,14 @@ public class PdfLoanServiceImpl implements IPdfLoanService {
 		
 
 ///////////////////////////////Ligne 1//////////////////////////////////
-		PdfPCell Cellnom = new PdfPCell(new Phrase("First Name & Last Name:\r\n ") );
-		//+ simulation.getCustomerAccountLoan().getFirstNameCustomer() + " "
-				//+ simulation.getCustomerAccountLoan().getLastNameCustomer(), subFontPara13N));
+		PdfPCell Cellnom = new PdfPCell(new Phrase("First Name & Last Name:\r\n " + simulation.getCustomerAccountLoan().getFirstNameCustomer() + " "
+				+ simulation.getCustomerAccountLoan().getLastNameCustomer(), subFontPara13N));
 		Cellnom.setBorder(Rectangle.NO_BORDER);
 		Cellnom.setBackgroundColor(BaseColor.WHITE);
 		table.addCell(Cellnom);
 		
 //////////////////////////////Ligne 2/////////////////////////////////////
-		PdfPCell CellEmail = new PdfPCell(new Phrase("Email :\r\n" ));
-		//+ simulation.getCustomerAccountLoan().getEmailAccount(), subFontPara13N));
+		PdfPCell CellEmail = new PdfPCell(new Phrase("Email :\r\n" + simulation.getCustomerAccountLoan().getEmailAccount(), subFontPara13N));
 		CellEmail.setBorder(Rectangle.NO_BORDER);
 		CellEmail.setBackgroundColor(BaseColor.WHITE);
 		table.addCell(CellEmail);
@@ -246,7 +244,7 @@ public class PdfLoanServiceImpl implements IPdfLoanService {
 				CelBIT.setBackgroundColor(BaseColor.WHITE);
 				table3.addCell(CelBIT);
 				
-				Paragraph titrefin = new Paragraph("THANK YOU FOR\r\nUSING OUR SERVICE.", subFont);
+				Paragraph titrefin = new Paragraph("THANK YOU FOR USING OUR SERVICE.", subFont);
 				titrefin.setAlignment(Element.ALIGN_LEFT);	
 				
 /////////////////FIN//////////////////////////////

@@ -39,7 +39,7 @@ public class Offer implements Serializable {
 	private Offer_categorie offer_categorie;
 	private Boolean Offer_visibility;
 	private Boolean expired;
-	private float offer_price;
+	private float price;
 
 	@ManyToMany (mappedBy="offers")
 	private List<CustomerAccount> O_customerAccount;
@@ -47,11 +47,15 @@ public class Offer implements Serializable {
 	
 	
 
-	public float getOffer_price() {
-		return offer_price;
+
+	public float getPrice() {
+		return price;
 	}
-	public void setOffer_price(float offer_price) {
-		this.offer_price = offer_price;
+	public void setPrice(float price) {
+		this.price = price;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	public Boolean getExpired() {
 		return expired;

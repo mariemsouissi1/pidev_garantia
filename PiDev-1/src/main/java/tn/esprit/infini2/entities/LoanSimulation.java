@@ -5,13 +5,16 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 
 @Entity
@@ -47,18 +50,22 @@ public class LoanSimulation implements Serializable {
 	
 	private double salaire;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")  
+	private Date dateStartSimulation;
+	
+	@Enumerated(EnumType.STRING)
 	private StatutLoanSimulation statusLoanSimulation;
 	
-	@CreationTimestamp
-	private Date publishedDate;
 
 	@ManyToOne
 	Bank bankLoan;
 
 	@ManyToOne
 	CustomerAccount customerAccountLoan;
+	
+	
 
-	public Long getIdLoan() {
+	public long getIdLoan() {
 		return idLoan;
 	}
 
@@ -154,13 +161,6 @@ public class LoanSimulation implements Serializable {
 		this.statusLoanSimulation = statusLoanSimulation;
 	}
 
-	public Date getPublishedDate() {
-		return publishedDate;
-	}
-
-	public void setPublishedDate(Date publishedDate) {
-		this.publishedDate = publishedDate;
-	}
 
 	public Bank getBankLoan() {
 		return bankLoan;
@@ -180,6 +180,14 @@ public class LoanSimulation implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public Date getDateStartSimulation() {
+		return dateStartSimulation;
+	}
+
+	public void setDateStartSimulation(Date dateStartSimulation) {
+		this.dateStartSimulation = dateStartSimulation;
 	}
 	
 

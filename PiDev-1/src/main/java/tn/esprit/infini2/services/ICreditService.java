@@ -4,14 +4,23 @@ import java.util.List;
 
 import tn.esprit.infini2.entities.Credit;
 
+
+
 public interface ICreditService {
+	
 	List<Credit> retrieveAllCredit();
 
-	Credit addCredit(Credit c);
+	boolean confirmCredit(Credit c);
 
-	void deleteCredit(Long id);
+	Credit updateCredit(long idCredit,Credit c);
 
-	Credit updateCredit(Credit u);
+	Credit retrieveCredit(long idCredit);
 
-	Credit retrieveCredit(Long id);
+	Credit requestCredit(Credit c, long idCustomerAccount);
+
+	void deleteCredit(long idCredit) ;
+	
+	List<Credit> retrieveCreditsByCustomerAccountId(long idCustomerAccount);
+	
+	boolean closeCredit(long idCredit);
 }

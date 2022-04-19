@@ -4,17 +4,22 @@ import java.util.List;
 import java.util.Map;
 
 import tn.esprit.infini2.entities.TransactionCredit;
+import tn.esprit.infini2.exceptions.InvalidAccountException;
+import tn.esprit.infini2.exceptions.InvalidAmountException;
+import tn.esprit.infini2.exceptions.InvalidBalanceException;
+
+
 
 
 public interface ITransactionCreditService {
 	
 	List<TransactionCredit> retrieveAllTransactions();
 
-	TransactionCredit addTransaction(TransactionCredit t);
+	TransactionCredit createNewVirement(TransactionCredit virement, Long emetteur, Long recepteur, Long idCredit) throws InvalidAccountException,InvalidAmountException,InvalidBalanceException;
 
 	void deleteTransaction(TransactionCredit t);
 
-	TransactionCredit updateTransaction(TransactionCredit u);
+	TransactionCredit updateTransaction(TransactionCredit t, long idTransaction);
 
 	TransactionCredit retrieveTransaction(long idTransaction);
 
@@ -26,7 +31,7 @@ public interface ITransactionCreditService {
 
 	List<TransactionCredit> listAllTransactions();
 
-	public List<TransactionCredit> listTransactionByCustomerAccountId(int idCustomerAccount);
+	public List<TransactionCredit> listTransactionByCustomerAccountId(long idCustomerAccount);
 
 	
 }
