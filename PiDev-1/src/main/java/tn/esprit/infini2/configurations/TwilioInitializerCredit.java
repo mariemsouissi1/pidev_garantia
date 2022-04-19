@@ -1,4 +1,4 @@
-package tn.pidev.configurations;
+package tn.esprit.infini2.configurations;
 
 import com.twilio.Twilio;
 import org.slf4j.Logger;

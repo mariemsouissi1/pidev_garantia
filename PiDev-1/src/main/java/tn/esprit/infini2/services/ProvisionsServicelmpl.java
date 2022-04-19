@@ -83,7 +83,7 @@ public class ProvisionsServicelmpl implements IProvisionsService
 			{
 				//Logger.getGlobal().log(Level.INFO, "in Sinister for Loop getSinisterDate: "+itr.getSinisterDate().toString());
 			
-			if((itr.getSinisterDate().isAfter(BeginigOfYear))&&(itr.getSinisterDate().isBefore(endDate))&&(itr.getSinisterStatus()==SinisterStatus.RESOLVED))
+			//if((itr.getSinisterDate().isAfter(BeginigOfYear))&&(itr.getSinisterDate().isBefore(endDate))&&(itr.getSinisterStatus()==SinisterStatus.RESOLVED))
 			
 
 				{ProvNC= ProvNC+itr.getSinisterIndemnity();}

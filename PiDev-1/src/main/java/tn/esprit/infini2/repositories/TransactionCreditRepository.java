@@ -1,10 +1,11 @@
-package tn.pidev.repositories;
+package tn.esprit.infini2.repositories;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import tn.pidev.entities.TransactionCredit;
+import tn.esprit.infini2.entities.TransactionCredit;
+
 
 
 @Repository

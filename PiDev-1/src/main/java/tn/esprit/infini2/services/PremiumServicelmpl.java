@@ -15,7 +15,7 @@ import tn.esprit.infini2.entities.Premium;
 import tn.esprit.infini2.entities.Sinister;
 import tn.esprit.infini2.entities.SinisterStatus;
 import tn.esprit.infini2.entities.Type_Contract;
-import tn.esprit.infini2.entities.customer;
+import tn.esprit.infini2.entities.Customer;
 import tn.esprit.infini2.repositories.ContractRepository;
 import tn.esprit.infini2.repositories.PremiumRepository;
 import tn.esprit.infini2.repositories.SinisterRepository;
@@ -69,7 +69,7 @@ public class PremiumServicelmpl implements IPremiumService
 			for(Sinister itr :ls)
 			{
 			
-			if(itr.getSinisterDate().isAfter(BeginDate)&&itr.getSinisterDate().isBefore(endDate))
+		//	if(itr.getSinisterDate().isAfter(BeginDate)&&itr.getSinisterDate().isBefore(endDate))
 				totalCost+=itr.getSinisterIndemnity();
 				i++;
 			}
@@ -96,8 +96,8 @@ public class PremiumServicelmpl implements IPremiumService
 
 		
 		
-		@Override
-		public Double calculatePremium( String typeA , LocalDate BeginigOfYear,LocalDate endDate, customer customer, double FNG, double comission) {
+		
+		public Double calculatePremium( String typeA , LocalDate BeginigOfYear,LocalDate endDate, Customer customer, double FNG, double comission) {
 		
 			double PrimValue=0;
 		Double PPValue = CalculatePPValuePrimium(BeginigOfYear,endDate);
@@ -163,13 +163,13 @@ public class PremiumServicelmpl implements IPremiumService
     		for(Contract itr :lc )
     		{
     			//if(itr.getCreationDate()== itr.getC_customerAccount().getCustomer().getBirthDate())
-    			if (true)
-    			{
+    			//if (true)
+    		//	{
         		results_map.put(itr.getIdContract(),  Double.valueOf(itr.getPrimeContract()*0.95));
     			itr.setPrimeContract(itr.getPrimeContract()*0.95);
     			 contractRepository.save(itr);
     				
-    			}
+    			//}
     			
     		    if (Period.between(itr.getCreationDate(), LocalDate.now()).getYears()>=5) {
     		    	results_map.put(itr.getIdContract(), Double.valueOf(itr.getPrimeContract()*0.95));
@@ -185,7 +185,8 @@ public class PremiumServicelmpl implements IPremiumService
        		
 
     	}
-		
+
+	
 		
 	
 

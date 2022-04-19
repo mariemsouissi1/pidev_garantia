@@ -1,4 +1,4 @@
-package tn.pidev.services;
+package tn.esprit.infini2.services;
 
 public interface IPdfLoanService {
 

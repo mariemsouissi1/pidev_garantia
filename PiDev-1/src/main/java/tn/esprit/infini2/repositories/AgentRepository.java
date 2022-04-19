@@ -1,11 +1,12 @@
-package tn.pidev.repositories;
+package tn.esprit.infini2.repositories;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import tn.pidev.entities.Agent;
+import tn.esprit.infini2.entities.Agent;
+
 
 
 public interface AgentRepository extends JpaRepository<Agent, Long>{

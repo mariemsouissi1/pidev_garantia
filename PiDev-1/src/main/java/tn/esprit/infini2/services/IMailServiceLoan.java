@@ -1,11 +1,11 @@
-package tn.pidev.services;
+package tn.esprit.infini2.services;
 
 import javax.mail.MessagingException;
 
 import org.springframework.mail.MailException;
 
-import tn.pidev.entities.Agent;
-import tn.pidev.entities.CustomerAccount;
+import tn.esprit.infini2.entities.Agent;
+import tn.esprit.infini2.entities.CustomerAccount;
 
 
 public interface IMailServiceLoan {

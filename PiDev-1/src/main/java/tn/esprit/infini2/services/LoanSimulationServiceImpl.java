@@ -1,4 +1,4 @@
-package tn.pidev.services;
+package tn.esprit.infini2.services;
 
 
 import java.text.SimpleDateFormat;
@@ -16,17 +16,17 @@ import org.springframework.stereotype.Service;
 
 
 
-import tn.pidev.entities.Agent;
-import tn.pidev.entities.Bank;
-import tn.pidev.entities.CustomerAccount;
-import tn.pidev.entities.LoanSimulation;
-import tn.pidev.entities.Offer;
-import tn.pidev.entities.StatutLoanSimulation;
-import tn.pidev.repositories.AgentRepository;
-import tn.pidev.repositories.BankRepository;
-import tn.pidev.repositories.CustomerAccountRepository;
-import tn.pidev.repositories.LoanSimulationRepository;
-import tn.pidev.repositories.OfferRepository;
+import tn.esprit.infini2.entities.Agent;
+import tn.esprit.infini2.entities.Bank;
+import tn.esprit.infini2.entities.CustomerAccount;
+import tn.esprit.infini2.entities.LoanSimulation;
+import tn.esprit.infini2.entities.Offer;
+import tn.esprit.infini2.entities.StatutLoanSimulation;
+import tn.esprit.infini2.repositories.AgentRepository;
+import tn.esprit.infini2.repositories.BankRepository;
+import tn.esprit.infini2.repositories.CustomerAccountRepository;
+import tn.esprit.infini2.repositories.LoanSimulationRepository;
+import tn.esprit.infini2.repositories.OfferRepository;
 
 
 
@@ -186,7 +186,7 @@ public class LoanSimulationServiceImpl implements ILoanSimulationService {
 		simulation.setInteretTotale(calculInteretTotale(offer, bank, nbrAnnee));
 		simulation.setPrincipale(calculPrincipale(offer, bank, nbrAnnee));
 		simulation.setMontantRembourse(calculMontantRembourse(offer, bank, nbrAnnee));
-		simulation.setPrixImmob(offer.getPrice());
+		simulation.setPrixImmob(offer.getOffer_price());
 		simulation.setSalaire(salaireCustomer);
 		return simulation;
 		
@@ -215,7 +215,7 @@ public class LoanSimulationServiceImpl implements ILoanSimulationService {
 
 	@Override
 	public double calculInteret(Offer offer, Bank bank) {
-		double montant = offer.getPrice();
+		double montant = offer.getOffer_price();
 		double tauxMensuel = calculTauxMensuel(bank);
 		return montant * tauxMensuel;
 	}
@@ -223,7 +223,7 @@ public class LoanSimulationServiceImpl implements ILoanSimulationService {
 	@Override
 	public double calculMensualite(Offer offer, Bank bank, int nbrAnnee) {
 		double tauxMensuel = calculTauxMensuel(bank);
-		double interet = offer.getPrice() * tauxMensuel;
+		double interet = offer.getOffer_price() * tauxMensuel;
 
 		double nbrEcheance = calculNbrEcheance(nbrAnnee) * (-1);
 		double puissance = Math.pow(1 + tauxMensuel, nbrEcheance);
@@ -245,7 +245,7 @@ public class LoanSimulationServiceImpl implements ILoanSimulationService {
 
 	@Override
 	public double calculInteretTotale(Offer offer, Bank bank, int nbrAnnee) {
-		return calculMontantRembourse(offer, bank, nbrAnnee) - offer.getPrice();
+		return calculMontantRembourse(offer, bank, nbrAnnee) - offer.getOffer_price();
 	}
 
 	

@@ -28,7 +28,7 @@ import tn.esprit.infini2.entities.Contract;
 import tn.esprit.infini2.entities.Premium;
 import tn.esprit.infini2.entities.Sinister;
 import tn.esprit.infini2.entities.Type_Contract;
-import tn.esprit.infini2.entities.customer;
+import tn.esprit.infini2.entities.Customer;
 import tn.esprit.infini2.repositories.ContractRepository;
 import tn.esprit.infini2.repositories.PremiumRepository;
 import tn.esprit.infini2.repositories.SinisterRepository;
@@ -105,7 +105,7 @@ public class ContractServicelmpl implements IContractService
 		@Override
 	    public void export(HttpServletResponse response, HashMap<String, Object> contractInfo) throws IOException {
 	        Document document = new Document(PageSize.A4);
-	        PdfWriter.getInstance(document, response.getOutputStream());
+	   //     PdfWriter.getInstance(document, response.getOutputStream());
 
 	        document.open();
 	        Font fontTitle = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
@@ -117,7 +117,7 @@ public class ContractServicelmpl implements IContractService
 	        Font fontParagraph = FontFactory.getFont(FontFactory.HELVETICA);
 	        fontParagraph.setSize(12);
 	        Contract contract = (Contract) contractInfo.get("contract");
-	        customer _customer = (customer) contractInfo.get("customer");
+	        Customer _customer = (Customer) contractInfo.get("customer");
 	        String content = "Nous soussignés, compagnie d’assurance GARANTIA d’une part et Mr/Mme" + 
 	        _customer.getFirstName() +" "+ _customer.getLastName() + " d’autrepart, " + "ayant le numéro de CIN : " + _customer.getCin()
 	        		+ "somme liés par la police d’assurance n°"+contract.getIdContract() +" ."
@@ -143,9 +143,9 @@ public class ContractServicelmpl implements IContractService
 	        Paragraph paragraph3 = new Paragraph(_customer.getFirstName() +" "+ _customer.getLastName(), fontParagraph);
 	        paragraph3.setAlignment(Paragraph.ALIGN_LEFT);
 
-	        document.add(paragraph);
+	     /*   document.add(paragraph);
 	        document.add(paragraph2);
-	        document.add(paragraph3);
+	        document.add(paragraph3);*/
 	        //contract.setDocumentContract(document.toString());
 	        document.close();
 	        contract.setDocumentContract(content);
@@ -242,7 +242,7 @@ public class ContractServicelmpl implements IContractService
 			for(Contract itr :ls)
 			{
 			
-			if (itr.getC_customerAccount().getCustomer().getIdCustomer() ==ind)
+			//if (itr.getC_customerAccount().getCustomer().getIdCustomer() ==ind)
 				retoure.add(itr);
 			}
 			

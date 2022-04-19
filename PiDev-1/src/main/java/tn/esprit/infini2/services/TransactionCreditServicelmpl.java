@@ -1,4 +1,4 @@
-package tn.pidev.services;
+package tn.esprit.infini2.services;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -14,9 +14,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
-import tn.pidev.entities.StatutTransaction;
-import tn.pidev.entities.TransactionCredit;
-import tn.pidev.repositories.TransactionCreditRepository;
+import tn.esprit.infini2.entities.StatutTransaction;
+import tn.esprit.infini2.entities.TransactionCredit;
+import tn.esprit.infini2.repositories.TransactionCreditRepository;
 
 
 
@@ -37,8 +37,7 @@ public class TransactionCreditServicelmpl implements ITransactionCreditService{
 	@Override
 	public TransactionCredit addTransaction(TransactionCredit t) {
 		log.info("Inside add transaction");
-		transactionCreditRepository.save(t);
-		return t;
+		return transactionCreditRepository.save(t) ;
 	}
 //	@Override
 //	public void PaymentDevis(int id, float price) {
@@ -110,7 +109,7 @@ public class TransactionCreditServicelmpl implements ITransactionCreditService{
 			} 
 			else {
 				log.error("Unverified transaction");
-				iEmailService.sendEmailUnverifiedTransaction(t.getCreditTransaction().getCustomerCredit().getEmailAccount(), t);
+			//	iEmailService.sendEmailUnverifiedTransaction(t.getCreditTransaction().getCustomerCredit().getEmailAccount(), t);
 			}
 	}
 	}
@@ -122,9 +121,9 @@ public class TransactionCreditServicelmpl implements ITransactionCreditService{
 		List<TransactionCredit> L = transactionCreditRepository.findAll(Sort.by("dateTransaction").ascending());
 		List<TransactionCredit> ListCustomerAccount = new ArrayList<TransactionCredit>();
 		for (int i = 0; i < L.size(); i++) {
-			if (L.get(i).getCreditTransaction().getCustomerCredit().getIdCustomerAccount() == idCustomerAccount) {
+			//if (L.get(i).getCreditTransaction().getCustomerCredit().getIdCustomerAccount() == idCustomerAccount) {
 				ListCustomerAccount.add(L.get(i));
-			}
+		//	}
 		}
 		return ListCustomerAccount;
 	}

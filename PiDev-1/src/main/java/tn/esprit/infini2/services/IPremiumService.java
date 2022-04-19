@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import tn.esprit.infini2.entities.Premium;
-import tn.esprit.infini2.entities.customer;
+import tn.esprit.infini2.entities.Customer;
 
 public interface IPremiumService {
 	List<Premium> retrieveAllPremiums();
@@ -18,7 +18,7 @@ public interface IPremiumService {
 
 	Premium retrievePremium(Long idPremium);
 
-	Double calculatePremium( String typeA, LocalDate BeginigOfYear,LocalDate endDate, customer customer,double FNG, double comission);
+	Double calculatePremium( String typeA, LocalDate BeginigOfYear,LocalDate endDate, Customer customer,double FNG, double comission);
 
 	double CalculatePPValuePrimium(LocalDate BeginDate, LocalDate endDate);
 

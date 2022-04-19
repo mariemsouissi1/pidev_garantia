@@ -46,7 +46,7 @@ public class Contract implements Serializable {
 	@OneToOne
 	private Premium premium;
 	@ManyToOne
-	customerAccount C_customerAccount;
+	CustomerAccount C_customerAccount;
 
 	public Long getIdContract() {
 		return idContract;
@@ -80,11 +80,11 @@ public class Contract implements Serializable {
 		this.premium = premium;
 	}
 
-	public customerAccount getC_customerAccount() {
+	public CustomerAccount getC_customerAccount() {
 		return C_customerAccount;
 	}
 
-	public void setC_customerAccount(customerAccount c_customerAccount) {
+	public void setC_customerAccount(CustomerAccount c_customerAccount) {
 		C_customerAccount = c_customerAccount;
 	}
 

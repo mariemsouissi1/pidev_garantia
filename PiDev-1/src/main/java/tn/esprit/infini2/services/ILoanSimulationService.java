@@ -1,4 +1,4 @@
-package tn.pidev.services;
+package tn.esprit.infini2.services;
 
 import java.util.List;
 
@@ -6,9 +6,9 @@ import javax.mail.MessagingException;
 
 import org.springframework.mail.MailException;
 
-import tn.pidev.entities.Bank;
-import tn.pidev.entities.LoanSimulation;
-import tn.pidev.entities.Offer;
+import tn.esprit.infini2.entities.Bank;
+import tn.esprit.infini2.entities.LoanSimulation;
+import tn.esprit.infini2.entities.Offer;
 
 //import tn.esprit.spring.entities.Ad;
 

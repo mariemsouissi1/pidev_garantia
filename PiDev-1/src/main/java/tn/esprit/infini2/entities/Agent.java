@@ -1,4 +1,4 @@
-package tn.pidev.entities;
+package tn.esprit.infini2.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

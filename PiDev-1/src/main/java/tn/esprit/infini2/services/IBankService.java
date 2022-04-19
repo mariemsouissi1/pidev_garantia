@@ -1,8 +1,8 @@
-package tn.pidev.services;
+package tn.esprit.infini2.services;
 
 import java.util.List;
 
-import tn.pidev.entities.Bank;
+import tn.esprit.infini2.entities.Bank;
 
 
 public interface IBankService {

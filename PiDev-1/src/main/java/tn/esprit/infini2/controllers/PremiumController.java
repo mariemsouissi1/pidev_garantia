@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import tn.esprit.infini2.entities.Contract;
 import tn.esprit.infini2.entities.Premium;
-import tn.esprit.infini2.entities.customer;
+import tn.esprit.infini2.entities.Customer;
 import tn.esprit.infini2.services.IPremiumService;
 
 @RestController
@@ -70,7 +70,7 @@ public class PremiumController {
 	// http://localhost:8089/SpringMVC/premium/calculatePremium
 		@GetMapping("/calculatePremium")
 		@ResponseBody
-	public double calculatePremium(@RequestParam String typeA , @RequestParam String BeginigOfYear ,@RequestParam String endDate, customer customer, double FNG,double comission ) {
+	public double calculatePremium(@RequestParam String typeA , @RequestParam String BeginigOfYear ,@RequestParam String endDate, Customer customer, double FNG,double comission ) {
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-yyyy");
 			double Pr = premiumService.calculatePremium(typeA , LocalDate.parse(BeginigOfYear,formatter), LocalDate.parse(endDate,formatter),  customer,  FNG,  comission);
 		return Pr;

@@ -138,7 +138,7 @@ public String suivreSinistre(Integer sinisterId) {
 		
 		Employee em = employeeRep.findById(idEmployee).orElse(null) ;
 		
-		List <Contract> contracts = contractRep.findAllByEmployee(em);
+	/*	List <Contract> contracts = contractRep.findAllByEmployee(em);
 		
 		for (Contract contract : contracts){     
 		
@@ -153,7 +153,7 @@ public String suivreSinistre(Integer sinisterId) {
 
 		}return sinisters ;
 			
-		}return null ;
+		}*/return null ;
 		}
 	
 	
@@ -166,7 +166,7 @@ public String suivreSinistre(Integer sinisterId) {
 	public List<Sinister> retrieveSinisterByCustomer(Long idCustomer) {
 		
 		Customer cu = customerRep.findById(idCustomer).orElse(null) ;
-		
+		/*
 		List <Contract> contracts = contractRep.findAllByCustomer(cu);
 		
 		for (Contract contract : contracts){     
@@ -181,7 +181,7 @@ public String suivreSinistre(Integer sinisterId) {
 
 		}return sinisters ;
 			
-		}return null ;
+		}*/return null ;
 		}
 	
 
@@ -254,7 +254,7 @@ public String suivreSinistre(Integer sinisterId) {
 		
 		Sinister s = sinisterRepository.findById(idSinister).orElse(null);
 		
-		if(verificationSinisterDelay(idSinister).contains("deadline well verificationed, deadline respected!")){
+		/*if(verificationSinisterDelay(idSinister).contains("deadline well verificationed, deadline respected!")){
 			
 			System.out.println(verificationSinisterDelay(idSinister).toString()) ;
 			
@@ -316,7 +316,7 @@ public String suivreSinistre(Integer sinisterId) {
 		    sinisterRepository.save(s);
 		    
 		    System.out.println(verificationSinisterDelay(idSinister).toString()) ;
-		    }
+		    }*/
 		return message+"\n"+s;
 	}
 

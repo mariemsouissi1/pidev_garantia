@@ -4,9 +4,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import tn.esprit.infini2.entities.Employee;
+import tn.esprit.infini2.repositories.CustomerRepository;
+import tn.esprit.infini2.repositories.EmployeeRepository;
 import tn.esprit.infini2.entities.Employee;
 import tn.esprit.infini2.repositories.EmployeeRepository;
+
+
+
 @Service
 public class EmployeeServiceImp implements IEmployeeService{
 @Autowired
@@ -31,8 +36,8 @@ EmployeeRepository employeeRepository;
 
 	@Override
 	public Employee updateEmployee(Employee u) {
-		// TODO Auto-generated method stub
-		return null;
+		employeeRepository.save(u);
+		return u;
 	}
 
 	@Override
@@ -42,3 +47,4 @@ EmployeeRepository employeeRepository;
 	}
 
 }
+

@@ -1,4 +1,4 @@
-package tn.pidev.entities;
+package tn.esprit.infini2.entities;
 
 import java.io.Serializable;
 import java.util.Date;

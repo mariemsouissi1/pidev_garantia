@@ -1,4 +1,4 @@
-package tn.pidev.controllers;
+package tn.esprit.infini2.controllers;
 
 import java.util.List;
 
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import tn.pidev.entities.Agent;
-import tn.pidev.services.IAgentService;
+import tn.esprit.infini2.entities.Agent;
+import tn.esprit.infini2.services.IAgentService;
 
 @RestController
 @RequestMapping("/agent")

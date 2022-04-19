@@ -1,4 +1,4 @@
-package tn.pidev.controllers;
+package tn.esprit.infini2.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import tn.pidev.entities.Agent;
-import tn.pidev.entities.CustomerAccount;
-import tn.pidev.entities.LoanSimulation;
-import tn.pidev.repositories.LoanSimulationRepository;
-import tn.pidev.services.IBankService;
-import tn.pidev.services.ILoanSimulationService;
-import tn.pidev.services.IMailService;
-import tn.pidev.services.IPdfLoanService;
+import tn.esprit.infini2.entities.Agent;
+import tn.esprit.infini2.entities.CustomerAccount;
+import tn.esprit.infini2.entities.LoanSimulation;
+import tn.esprit.infini2.repositories.LoanSimulationRepository;
+import tn.esprit.infini2.services.IBankService;
+import tn.esprit.infini2.services.ILoanSimulationService;
+import tn.esprit.infini2.services.IMailService;
+import tn.esprit.infini2.services.IPdfLoanService;
 
 
 @RestController

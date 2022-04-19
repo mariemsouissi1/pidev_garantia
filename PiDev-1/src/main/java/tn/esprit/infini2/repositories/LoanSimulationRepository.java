@@ -1,4 +1,4 @@
-package tn.pidev.repositories;
+package tn.esprit.infini2.repositories;
 
 import java.util.List;
 
@@ -8,7 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import tn.pidev.entities.LoanSimulation;
+import tn.esprit.infini2.entities.LoanSimulation;
+
 
 @Repository
 public interface LoanSimulationRepository extends JpaRepository<LoanSimulation, Long> {
@@ -32,10 +33,10 @@ public interface LoanSimulationRepository extends JpaRepository<LoanSimulation, 
     @Query(value="SELECT * FROM loan_simulation WHERE customer_account_loan_id_customer_account=?1 AND status_loan_simulation='inprogress'",nativeQuery=true)
     public List<LoanSimulation> countAllSimulationsByidCustomer(long idCustomerAccount);
     
-    @Query(value="SELECT COUNT(*) FROM loan_simulation WHERE status_loan_simulation='inprogress'",nativeQuery=true)
+    @Query(value="SELECT COUNT(*) FROM loan_simulation WHERE status_loan_simulation='inprogress' ",nativeQuery=true)
     public int countAllSimulationsInProgress();
     
-    @Query(value="SELECT * FROM loan_simulation WHERE status_loan_simulation='denied'",nativeQuery=true)
+    @Query(value="SELECT * FROM loan_simulation WHERE status_loan_simulation='denied' ",nativeQuery=true)
     public List<LoanSimulation> getAllSimulationsDenied();
     
     @Query(value="SELECT * FROM loan_simulation WHERE status_loan_simulation='inprogress' ",nativeQuery=true)

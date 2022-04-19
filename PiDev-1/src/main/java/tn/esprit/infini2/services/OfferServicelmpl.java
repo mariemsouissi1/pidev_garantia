@@ -118,14 +118,14 @@ public Offer match_offer(Long idoffer)
 		for(int i=0;i<nbr;i++)
 		{
 			CustomerAccount ca=accounts.get(i);
-			  List<Offer> offers = ca.getOffers();
+		//	  List<Offer> offers = ca.();
 			String s=assignOffer(ca);
 			if(s=="Inf à 20") 
 			{
 				if((listinfà20.contains(o.getOffer_categorie().toString()))&&(o.getExpired()==false))
 				{
 					customers.add(ca);
-					offers.add(o);
+					//offers.add(o);
 				}
 			}
 			else if(s=="Entre 20 et 30") 
@@ -133,7 +133,7 @@ public Offer match_offer(Long idoffer)
 				if((list2030.contains(o.getOffer_categorie().toString()))&&(o.getExpired()==false))
 				{
 					customers.add(ca);
-					offers.add(o);
+					//offers.add(o);
 				}
 			}
 			else if(s=="Entre 30 et 50") 
@@ -141,7 +141,7 @@ public Offer match_offer(Long idoffer)
 				if((list3050.contains(o.getOffer_categorie().toString()))&&(o.getExpired()==false))
 				{
 					customers.add(ca);
-					offers.add(o);
+					//offers.add(o);
 				}
 			}
 			else if(s=="Sup à 50") 
@@ -149,11 +149,11 @@ public Offer match_offer(Long idoffer)
 				if((listSupà50.contains(o.getOffer_categorie().toString()))&&(o.getExpired()==false))
 				{
 					customers.add(ca);
-					offers.add(o);
+					//offers.add(o);
 				}
 			}
-		ca.setOffers(offers);
-        System.out.println("offers is : "+offers);
+		//ca.setOffers(offers);
+      //  System.out.println("offers is : "+offers);
 
 		}
 		o.setO_customerAccount(customers);

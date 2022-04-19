@@ -1,4 +1,4 @@
-package tn.pidev.controllers;
+package tn.esprit.infini2.controllers;
 
 import java.util.List;
 
@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import tn.pidev.entities.Credit;
-import tn.pidev.services.ICreditService;
-import tn.pidev.services.IEmailServiceCredit;
+import tn.esprit.infini2.entities.Credit;
+import tn.esprit.infini2.services.ICreditService;
+import tn.esprit.infini2.services.IEmailServiceCredit;
 
 @RestController
 @RequestMapping("/credit")
@@ -33,9 +33,11 @@ public class CreditController {
 	@ResponseBody
 	public Credit requestCreditCustomer(@RequestBody Credit c, @PathVariable("id-customer") long idCustomerAccount)
 	{
-	Credit credit = CreditService.requestCredit(c, idCustomerAccount);
-	iEmailService.sendEmailRequest(credit.getCustomerCredit().getEmailAccount(), credit);
-	return credit;
+	// credit = CreditService.requestCredit(c, idCustomerAccount);
+	//iEmailService.sendEmailRequest(credit.getCustomerCredit().getEmailAccount(), credit);
+//	return credit;
+	return null;
+
 	}
 	
 /////////////////////////////////////////VERIFICATION CREDIT////////////////////////////////////////////
@@ -45,7 +47,7 @@ public class CreditController {
 	@ResponseBody
 	public boolean verifCredit(@PathVariable("id-customer") long idCustomerAccount, @PathVariable("id-credit") long idC) {
 		boolean verif=false;
-		List <Credit> listcredit = CreditService.retrieveCreditsByCustomerAccountId(idCustomerAccount);
+		/*List <Credit> listcredit = CreditService.retrieveCreditsByCustomerAccountId(idCustomerAccount);
 			for (Credit c : listcredit) {
 				if (c.getIdCredit() == idC) {
 					
@@ -57,7 +59,8 @@ public class CreditController {
 				}
 			}
 		}
-		return verif;
+		return verif;*/
+		return false;
 
 		}
 
@@ -68,7 +71,8 @@ public class CreditController {
 	@ResponseBody
 	public Credit refreshCredit(@RequestBody Credit c,@PathVariable("idCredit") long idCredit)
 	{
-		return CreditService.updateCredit(idCredit,c);
+		return c;
+	//	return CreditService.updateCredit(idCredit,c);
 	}
 	
 	
@@ -96,7 +100,8 @@ public class CreditController {
 	@GetMapping("/retrieve-credit-customer-id/{id-customer}")
 	@ResponseBody
 	public List<Credit> retrieveCreditByCustomer(@PathVariable("id-customer") long idCustomerAccount){
-		return CreditService.retrieveCreditsByCustomerAccountId(idCustomerAccount);
+		return null;
+		//return CreditService.retrieveCreditsByCustomerAccountId(idCustomerAccount);
 	}
 
 ///////////////////DELETE WITH CONTROL//////////////////////////////////
@@ -113,12 +118,13 @@ public class CreditController {
 	@PutMapping("/close-credit/{id-credit}")
 	@ResponseBody
 	public String closeCredit(@PathVariable("id-credit") long idC) {
-		if (CreditService.closeCredit(idC) == true) {
+		return null;
+		/*if (CreditService.closeCredit(idC) == true) {
 			return "Paid Credit";
 		}
 		else {
 			return "Unpaid Credit";
-		}			
+		}	*/		
 	}
 
 }

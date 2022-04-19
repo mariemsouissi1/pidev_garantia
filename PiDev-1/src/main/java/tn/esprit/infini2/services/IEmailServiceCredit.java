@@ -1,7 +1,7 @@
-package tn.pidev.services;
+package tn.esprit.infini2.services;
 
-import tn.pidev.entities.Credit;
-import tn.pidev.entities.TransactionCredit;
+import tn.esprit.infini2.entities.Credit;
+import tn.esprit.infini2.entities.TransactionCredit;
 
 public interface IEmailServiceCredit {
 	

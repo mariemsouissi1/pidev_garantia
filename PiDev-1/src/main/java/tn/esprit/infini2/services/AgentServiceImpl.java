@@ -1,4 +1,4 @@
-package tn.pidev.services;
+package tn.esprit.infini2.services;
 
 import java.util.List;
 
@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
-import tn.pidev.entities.Agent;
-import tn.pidev.entities.Bank;
-import tn.pidev.repositories.AgentRepository;
-import tn.pidev.repositories.BankRepository;
+import tn.esprit.infini2.entities.Agent;
+import tn.esprit.infini2.entities.Bank;
+import tn.esprit.infini2.repositories.AgentRepository;
+import tn.esprit.infini2.repositories.BankRepository;
 
 @Service
 @Slf4j

@@ -1,8 +1,8 @@
-package tn.pidev.services;
+package tn.esprit.infini2.services;
 
 import java.util.List;
 
-import tn.pidev.entities.Agent;
+import tn.esprit.infini2.entities.Agent;
 
 public interface IAgentService {
 	
