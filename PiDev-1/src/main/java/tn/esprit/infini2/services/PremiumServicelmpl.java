@@ -101,7 +101,7 @@ public class PremiumServicelmpl implements IPremiumService
 		
 			double PrimValue=0;
 		Double PPValue = CalculatePPValuePrimium(BeginigOfYear,endDate);
-	//	float Score = calculScore(customer);
+	float Score = calculScore(customer);
 		float Score = 7;
 			
 			if( Score <= 5) {
