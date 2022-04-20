@@ -89,21 +89,21 @@ public class AppController {
         return  customerRepo.save(customer);
     }
 
-    @PreAuthorize("hasAuthority(@userService.Employee())")
+    //@PreAuthorize("hasAuthority(@userService.Employee())")
     @GetMapping("/customersList")
     public List<Customer> customersList() {
         List<Customer> list = (List<Customer>) customerRepo.findAll();
         return list;
     }
 
-    @PreAuthorize("hasAuthority(@userService.Customer())")
+    //@PreAuthorize("hasAuthority(@userService.Customer())")
     @PutMapping("/updateCustomer")
     @ResponseBody
     public Customer updateCustomer(@RequestBody Customer customer) {
         return customerService.updateCustomer(customer);
     }
 
-    @PreAuthorize("hasAuthority(@userService.Employee())")
+    //@PreAuthorize("hasAuthority(@userService.Employee())")
     @PutMapping("/updateEmployee")
     @ResponseBody
     public Employee updateEmployee(@RequestBody Employee employee) {

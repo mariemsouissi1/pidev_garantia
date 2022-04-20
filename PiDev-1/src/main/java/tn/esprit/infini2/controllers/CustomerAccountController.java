@@ -18,7 +18,7 @@ public class CustomerAccountController {
     @Autowired
     CustomerAccountServiceImp customerAccountService;
 
-    @PreAuthorize("hasAuthority(@userService.Employee())")
+    //@PreAuthorize("hasAuthority(@userService.Employee())")
     @GetMapping ("/customerscorestat")
     public List<GeneralScoreStat> getCustomerScoreStat () throws JsonProcessingException {
         return (customerAccountService.retrieveScoreStat());
