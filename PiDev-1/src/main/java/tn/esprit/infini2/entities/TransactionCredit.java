@@ -1,6 +1,9 @@
 package tn.esprit.infini2.entities;
 
 
+import java.math.BigDecimal;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotEmpty;
 
 import org.springframework.format.annotation.DateTimeFormat;
 @Entity
@@ -19,31 +23,70 @@ public class TransactionCredit {
 	private long idTransaction;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")    
-	private long dateTransaction;
-	private long sourceAccountNumber;
-	private String sourceCurrency;
-	private long destinedAccountNumber;
-	private double amountTransaction;
+	private Date dateTransaction;
+	private Long sourceAccountNumber;
+	
+	private Long destinedAccountNumber;
+	
+	private BigDecimal amountTransaction;
+	private BigDecimal soldeCompteEmetteur;
+	private BigDecimal soldeCompteRecepteur;
 	private String description;
 	
     @Enumerated(EnumType.STRING)
 	private StatutTransaction statutTransaction;
-    public TypeTransaction getTypeTransaction() {
-		return typeTransaction;
-	}
+    
 
-	public void setTypeTransaction(TypeTransaction typeTransaction) {
-		this.typeTransaction = typeTransaction;
-	}
 
-	@Enumerated(EnumType.STRING)
-    private TypeTransaction typeTransaction;
 	
-	private String url;
 	@ManyToOne
 	Credit creditTransaction;
 	
 	
+	public Long getSourceAccountNumber() {
+		return sourceAccountNumber;
+	}
+
+	public void setSourceAccountNumber(Long sourceAccountNumber) {
+		this.sourceAccountNumber = sourceAccountNumber;
+	}
+
+	public Long getDestinedAccountNumber() {
+		return destinedAccountNumber;
+	}
+
+	public void setDestinedAccountNumber(Long destinedAccountNumber) {
+		this.destinedAccountNumber = destinedAccountNumber;
+	}
+
+
+
+	public BigDecimal getAmountTransaction() {
+		return amountTransaction;
+	}
+
+	public void setAmountTransaction(BigDecimal amountTransaction) {
+		this.amountTransaction = amountTransaction;
+	}
+
+
+
+	public BigDecimal getSoldeCompteEmetteur() {
+		return soldeCompteEmetteur;
+	}
+
+	public void setSoldeCompteEmetteur(BigDecimal soldeCompteEmetteur) {
+		this.soldeCompteEmetteur = soldeCompteEmetteur;
+	}
+
+	public BigDecimal getSoldeCompteRecepteur() {
+		return soldeCompteRecepteur;
+	}
+
+	public void setSoldeCompteRecepteur(BigDecimal soldeCompteRecepteur) {
+		this.soldeCompteRecepteur = soldeCompteRecepteur;
+	}
+
 	public long getIdTransaction() {
 		return idTransaction;
 	}
@@ -52,11 +95,13 @@ public class TransactionCredit {
 		this.idTransaction = idTransaction;
 	}
 
-	public long getDateTransaction() {
+
+
+	public Date getDateTransaction() {
 		return dateTransaction;
 	}
 
-	public void setDateTransaction(long dateTransaction) {
+	public void setDateTransaction(Date dateTransaction) {
 		this.dateTransaction = dateTransaction;
 	}
 
@@ -77,39 +122,9 @@ public class TransactionCredit {
 		this.creditTransaction = creditTransaction;
 	}
 
-	public long getSourceAccountNumber() {
-		return sourceAccountNumber;
-	}
 
-	public void setSourceAccountNumber(long sourceAccountNumber) {
-		this.sourceAccountNumber = sourceAccountNumber;
-	}
 
-	
 
-	public long getDestinedAccountNumber() {
-		return destinedAccountNumber;
-	}
-
-	public void setDestinedAccountNumber(long destinedAccountNumber) {
-		this.destinedAccountNumber = destinedAccountNumber;
-	}
-
-	public String getSourceCurrency() {
-		return sourceCurrency;
-	}
-
-	public void setSourceCurrency(String sourceCurrency) {
-		this.sourceCurrency = sourceCurrency;
-	}
-
-	public double getAmountTransaction() {
-		return amountTransaction;
-	}
-
-	public void setAmountTransaction(double amountTransaction) {
-		this.amountTransaction = amountTransaction;
-	}
 
 	public String getDescription() {
 		return description;
@@ -119,13 +134,9 @@ public class TransactionCredit {
 		this.description = description;
 	}
 
-	public String getUrl() {
-		return url;
-	}
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
+
+	
 
 
 

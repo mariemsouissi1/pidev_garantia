@@ -7,6 +7,8 @@ import org.springframework.mail.MailException;
 import tn.esprit.infini2.entities.Agent;
 import tn.esprit.infini2.entities.CustomerAccount;
 
+
+
 public interface IMailService {
 
 //	void Send(CustomerAccount customer) throws MailException;

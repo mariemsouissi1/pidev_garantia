@@ -4,11 +4,12 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import tn.esprit.infini2.entities.Agent;
 
 
-
+@Repository
 public interface AgentRepository extends JpaRepository<Agent, Long>{
 
     @Query(value = "SELECT * FROM bank b join agent a on a.id_agent=b.agent_bank_id_agent WHERE b.name_bank=?1",nativeQuery=true)

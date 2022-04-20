@@ -7,14 +7,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import lombok.extern.slf4j.Slf4j;
 import tn.esprit.infini2.entities.Agent;
 import tn.esprit.infini2.entities.Bank;
 import tn.esprit.infini2.repositories.AgentRepository;
 import tn.esprit.infini2.repositories.BankRepository;
 
+
 @Service
-@Slf4j
 public class AgentServiceImpl implements IAgentService {
 	
 	private static final Logger log = LoggerFactory.getLogger(AgentServiceImpl.class);

@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
 
 @Entity
 @Table(name="customerAccount")
@@ -21,6 +24,31 @@ public class CustomerAccount implements Serializable{
 	private Float solde;
 	private Float debit;
 	private Float score;
+	
+	private long cin;
+	
+	private String FirstNameCustomer;
+	
+	private String LastNameCustomer;
+	@NotEmpty
+	@Email
+	private String emailAccount;
+
+	
+    @Enumerated(EnumType.STRING)
+	private StatutCustomer statutCustomer;
+
+    @Enumerated(EnumType.STRING)
+	private Fidelite fidelite;
+    
+    private double SalaryCustomer;
+    
+    @OneToMany(mappedBy="customerCredit")
+	private List<Credit> creditsCustomer;
+    
+    @OneToMany(mappedBy="customerAccountLoan")
+    private List<LoanSimulation> loanSimulatorsListCustomer;
+    
 
 	public ScoreType getScoreType() {
 		return scoreType;
@@ -40,8 +68,7 @@ public class CustomerAccount implements Serializable{
 	private Set<Contract> contracts;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy= "S_customerAccount")
 	private Set<Sinister> sinister;
-	@OneToMany(mappedBy="customerCredit")
-	private List<Credit> customersCredits;
+
 	@OneToMany(mappedBy="customerClaim")
 	private List<Claim> customersClaimss;
 	@ManyToMany
@@ -91,4 +118,112 @@ public class CustomerAccount implements Serializable{
 		this.score = score;
 	}
 
+	public long getCin() {
+		return cin;
+	}
+
+	public void setCin(long cin) {
+		this.cin = cin;
+	}
+
+	public String getFirstNameCustomer() {
+		return FirstNameCustomer;
+	}
+
+	public void setFirstNameCustomer(String firstNameCustomer) {
+		FirstNameCustomer = firstNameCustomer;
+	}
+
+	public String getLastNameCustomer() {
+		return LastNameCustomer;
+	}
+
+	public void setLastNameCustomer(String lastNameCustomer) {
+		LastNameCustomer = lastNameCustomer;
+	}
+
+	public String getEmailAccount() {
+		return emailAccount;
+	}
+
+	public void setEmailAccount(String emailAccount) {
+		this.emailAccount = emailAccount;
+	}
+
+	public StatutCustomer getStatutCustomer() {
+		return statutCustomer;
+	}
+
+	public void setStatutCustomer(StatutCustomer statutCustomer) {
+		this.statutCustomer = statutCustomer;
+	}
+
+	public Fidelite getFidelite() {
+		return fidelite;
+	}
+
+	public void setFidelite(Fidelite fidelite) {
+		this.fidelite = fidelite;
+	}
+
+	public double getSalaryCustomer() {
+		return SalaryCustomer;
+	}
+
+	public void setSalaryCustomer(double salaryCustomer) {
+		SalaryCustomer = salaryCustomer;
+	}
+
+	public List<Credit> getCreditsCustomer() {
+		return creditsCustomer;
+	}
+
+	public void setCreditsCustomer(List<Credit> creditsCustomer) {
+		this.creditsCustomer = creditsCustomer;
+	}
+
+	public List<LoanSimulation> getLoanSimulatorsListCustomer() {
+		return loanSimulatorsListCustomer;
+	}
+
+	public void setLoanSimulatorsListCustomer(List<LoanSimulation> loanSimulatorsListCustomer) {
+		this.loanSimulatorsListCustomer = loanSimulatorsListCustomer;
+	}
+
+	public Set<Contract> getContracts() {
+		return contracts;
+	}
+
+	public void setContracts(Set<Contract> contracts) {
+		this.contracts = contracts;
+	}
+
+	public Set<Sinister> getSinister() {
+		return sinister;
+	}
+
+	public void setSinister(Set<Sinister> sinister) {
+		this.sinister = sinister;
+	}
+
+	public List<Claim> getCustomersClaimss() {
+		return customersClaimss;
+	}
+
+	public void setCustomersClaimss(List<Claim> customersClaimss) {
+		this.customersClaimss = customersClaimss;
+	}
+
+	public Set<Offer> getOffers() {
+		return offers;
+	}
+
+	public void setOffers(Set<Offer> offers) {
+		this.offers = offers;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
 }

@@ -2,10 +2,13 @@ package tn.esprit.infini2.services;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,15 +16,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import lombok.extern.slf4j.Slf4j;
+import tn.esprit.infini2.entities.Credit;
 import tn.esprit.infini2.entities.StatutTransaction;
 import tn.esprit.infini2.entities.TransactionCredit;
+import tn.esprit.infini2.exceptions.InvalidAccountException;
+import tn.esprit.infini2.exceptions.InvalidAmountException;
+import tn.esprit.infini2.exceptions.InvalidBalanceException;
 import tn.esprit.infini2.repositories.TransactionCreditRepository;
 
+import java.math.BigDecimal; 
 
 
 @Service
-@Slf4j
 public class TransactionCreditServicelmpl implements ITransactionCreditService{
 	
 	private static final Logger log = LoggerFactory.getLogger(CreditServicelmpl.class);
@@ -30,39 +36,83 @@ public class TransactionCreditServicelmpl implements ITransactionCreditService{
 	TransactionCreditRepository transactionCreditRepository;
 	@Autowired 
 	IEmailServiceCredit iEmailService;
-
+	
+	@Autowired
+	ICreditService CreditService;
 	
 /////////////////////////////////ADD//////////////////////////////////////////////
 	
-	@Override
-	public TransactionCredit addTransaction(TransactionCredit t) {
-		log.info("Inside add transaction");
-		return transactionCreditRepository.save(t) ;
-	}
-//	@Override
-//	public void PaymentDevis(int id, float price) {
-//		Credit c = retrieveCredit(id);
-//		retrieveCredit(id).getAccount()
-//				.setAccount_balance(retrieveCredit(id).getAccount().getAccount_balance() - price);
-//		Transaction t = new Transaction();
-//		t.setTransactionAmount(price);
-//		t.setNbreC(0);
-//		t.setStatus(Status.success);
-//		t.setTransactionDate(convertToDateViaSqlTimestamp(LocalDateTime.now()));
-//		t.setAmountC(0);
-//		t.setTransactionType(Operation.debit);
-//		transService.addTransaction(t);
-//
-//	}
+		@Transactional
+	    @Override
+	    public TransactionCredit createNewVirement(TransactionCredit virement, Long emetteur, Long recepteur, Long idCredit) throws InvalidAccountException,InvalidAmountException,InvalidBalanceException {
+
+	        Credit c = CreditService.retrieveCredit(idCredit);
+	        TransactionCredit transaction = null;
+	        
+			if(emetteur.compareTo(recepteur)==0) {
+	            throw new InvalidAccountException("Virement Impossible Compte emetteur et Compte Recepteur ont le meme numero de Compte Veuillez specifier un numero de Compte different");
+	        }
+	      
+	        if (virement.getSourceAccountNumber()!= emetteur)
+	        {
+	            throw new InvalidAccountException("Votre Compte n'est plus disponible pour l'operation veuillez contacter votre agence");
+	        }
+	        else if(virement.getDestinedAccountNumber()!= recepteur){
+	            throw new InvalidAccountException("Compte Destinataire n'est plus disponible pour l'operation veuillez contacter votre agence");
+	        }
+	        else{
+
+	        	Date date = new Date(System.currentTimeMillis());
+	    		virement.setDateTransaction(date);
+	            virement.setDestinedAccountNumber(recepteur);
+
+	            if ( virement.getAmountTransaction().longValue() <=0 || virement.getAmountTransaction().longValue()< 100){
+	                throw new InvalidAmountException("Montant specifié null et/ou negative et/ou inférieure à 100");
+	            }
+
+	            if ( virement.getSoldeCompteEmetteur().compareTo(virement.getAmountTransaction().subtract(BigDecimal.ONE) ) == 1 ){
+
+	            	virement.setSoldeCompteEmetteur(virement.getSoldeCompteEmetteur().subtract(virement.getAmountTransaction()));
+
+	            	virement.setSoldeCompteRecepteur(virement.getSoldeCompteRecepteur().add(virement.getAmountTransaction()));
+	            	
+	            	c.setAmountRemainingCredit(c.getAmountCredit()-virement.getAmountTransaction().floatValue());
+
+	                virement.setStatutTransaction(StatutTransaction.verified);
+	                
+	                c.getTransactions().add(virement);
+	                
+	            	transaction = transactionCreditRepository.save(virement);
+	                
+
+	            }else {
+	                throw new InvalidBalanceException("Impossible d'effectuer le virement solde insuffisant");
+	            }
+
+	        }
+
+	        return transaction;
+		}
+	
+
 
 	
 //////////////////////UPDATEEE/////////////////////////////////////::
 	@Override
-	public TransactionCredit updateTransaction(TransactionCredit u) 	{
+	public TransactionCredit updateTransaction(TransactionCredit t, long idTransaction) 	{
 		log.info("Inside update transaction");
-		long id = u.getIdTransaction();
-		if (transactionCreditRepository.findById(id).isPresent()){
-			return transactionCreditRepository.save(u);
+		if (transactionCreditRepository.findById(idTransaction).isPresent()){
+			TransactionCredit transaction= transactionCreditRepository.findById(idTransaction).get();
+			t.setSourceAccountNumber(transaction.getSourceAccountNumber());
+			t.setDestinedAccountNumber(transaction.getDestinedAccountNumber());
+			t.setCreditTransaction(transaction.getCreditTransaction());
+			t.setDescription(transaction.getDescription());
+			t.setSoldeCompteEmetteur(transaction.getSoldeCompteEmetteur());
+			t.setSoldeCompteRecepteur(transaction.getSoldeCompteRecepteur());
+			t.setDateTransaction(transaction.getDateTransaction());
+			t.setStatutTransaction(transaction.getStatutTransaction());
+			transactionCreditRepository.delete(transaction);
+			return transactionCreditRepository.save(t);
 		}
 		else
 		{
@@ -109,27 +159,27 @@ public class TransactionCreditServicelmpl implements ITransactionCreditService{
 			} 
 			else {
 				log.error("Unverified transaction");
-			//	iEmailService.sendEmailUnverifiedTransaction(t.getCreditTransaction().getCustomerCredit().getEmailAccount(), t);
+				iEmailService.sendEmailUnverifiedTransaction(t.getCreditTransaction().getCustomerCredit().getEmailAccount(), t);
 			}
 	}
 	}
-///////////////////retourne liste des transactions li customer account mteehom aandou idCustomer///////////////////
+////////////////////////////////////
 	//@SuppressWarnings("null")
 	@Override
-	public List<TransactionCredit> listTransactionByCustomerAccountId(int idCustomerAccount) {
+	public List<TransactionCredit> listTransactionByCustomerAccountId(long idCustomerAccount) {
 		log.info("Inside liste transaction pour chaque customer dont id est idCustomerAccount");		
 		List<TransactionCredit> L = transactionCreditRepository.findAll(Sort.by("dateTransaction").ascending());
 		List<TransactionCredit> ListCustomerAccount = new ArrayList<TransactionCredit>();
 		for (int i = 0; i < L.size(); i++) {
-			//if (L.get(i).getCreditTransaction().getCustomerCredit().getIdCustomerAccount() == idCustomerAccount) {
+			if (L.get(i).getCreditTransaction().getCustomerCredit().getIdCustomerAccount() == idCustomerAccount) {
 				ListCustomerAccount.add(L.get(i));
-		//	}
+			}
 		}
 		return ListCustomerAccount;
 	}
 
-/////////////////retourne la liste des transactions f 3am li bch ndakhlou//////////////////////////////////////////////////
-	//@SuppressWarnings({ "null", "deprecation" })
+////////////////LIST TRANSACTION PER YEARRRRRRR/////////////////////////////////////////////////
+	@Transactional
 	@Override
 	public List<TransactionCredit> listTransactionByYear(double year) {
 		log.info("Inside list of transactions by year ");
@@ -176,63 +226,63 @@ public class TransactionCreditServicelmpl implements ITransactionCreditService{
 
 			{
 				log.info("Amount"+L.get(i).getAmountTransaction());
-				sum1 += L.get(i).getAmountTransaction();
+				sum1 += L.get(i).getAmountTransaction().doubleValue();
 				log.info("Sum Amount"+L.get(i).getAmountTransaction());
 				MonthAmount.put( (double) 1, sum1);
 			}
 
 			else if (month.equals("02")) {
-				sum2 += L.get(i).getAmountTransaction();
+				sum2 += L.get(i).getAmountTransaction().doubleValue();
 				MonthAmount.put((double) 2, sum2);
 			}
 
 			else if (month.equals("03")) {
-				sum3 += L.get(i).getAmountTransaction();
+				sum3 += L.get(i).getAmountTransaction().doubleValue();
 				MonthAmount.put((double) 3, sum3);
 			}
 
 			else if (month.equals("04")) {
-				sum4 += L.get(i).getAmountTransaction();
+				sum4 += L.get(i).getAmountTransaction().doubleValue();
 				MonthAmount.put((double) 4, sum4);
 			}
 
 			else if (month.equals("05")) {
-				sum5 += L.get(i).getAmountTransaction();
+				sum5 += L.get(i).getAmountTransaction().doubleValue();
 				MonthAmount.put((double) 5, sum5);
 			}
 
 			else if (month.equals("06")) {
-				sum6 += L.get(i).getAmountTransaction();
+				sum6 += L.get(i).getAmountTransaction().doubleValue();
 				MonthAmount.put((double) 6, sum6);
 			}
 
 			else if (month.equals("07")) {
-				sum7 += L.get(i).getAmountTransaction();
+				sum7 += L.get(i).getAmountTransaction().doubleValue();
 				MonthAmount.put((double) 7, sum7);
 			}
 
 			else if (month.equals("08")) {
-				sum8 += L.get(i).getAmountTransaction();
+				sum8 += L.get(i).getAmountTransaction().doubleValue();
 				MonthAmount.put((double) 8, sum8);
 			}
 
 			else if (month.equals("09")) {
-				sum9 += L.get(i).getAmountTransaction();
+				sum9 += L.get(i).getAmountTransaction().doubleValue();
 				MonthAmount.put((double) 9, sum9);
 			}
 
 			else if (month.equals("10")) {
-				sum10 += L.get(i).getAmountTransaction();
+				sum10 += L.get(i).getAmountTransaction().doubleValue();
 				MonthAmount.put((double) 10, sum10);
 			}
 
 			else if (month.equals("11")) {
-				sum11 += L.get(i).getAmountTransaction();
+				sum11 += L.get(i).getAmountTransaction().doubleValue();
 				MonthAmount.put((double) 11, sum11);
 			}
 
 			else if (month.equals("12")) {
-				sum12 += L.get(i).getAmountTransaction();
+				sum12 += L.get(i).getAmountTransaction().doubleValue();
 				MonthAmount.put((double) 12, sum12);
 			}
 
@@ -251,7 +301,7 @@ public class TransactionCreditServicelmpl implements ITransactionCreditService{
 		Iterator<TransactionCredit> iter = transaction.iterator();
 		while (iter.hasNext()) {		
 			TransactionCredit trans = iter.next(); 
-		    sum=sum+trans.getAmountTransaction();
+		    sum=sum+trans.getAmountTransaction().doubleValue();
 		}
 		return sum;
 	}

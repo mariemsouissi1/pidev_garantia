@@ -28,6 +28,7 @@ public class Contract implements Serializable {
 	private Long idContract; // clé primaire
 	private Long durationContract;
 	private double PrimeContract;
+	private Float plafond ;
 	public double getPrimeContract() {
 		return PrimeContract;
 	}
@@ -111,6 +112,14 @@ public class Contract implements Serializable {
 
 	public void setDocumentContract(String documentContract) {
 		this.documentContract = documentContract;
+	}
+
+	public Float getPlafond() {
+		return plafond;
+	}
+
+	public void setPlafond(Float plafond) {
+		this.plafond = plafond;
 	}
 
 }

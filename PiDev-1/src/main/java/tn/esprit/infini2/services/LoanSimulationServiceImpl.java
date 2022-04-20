@@ -1,7 +1,5 @@
 package tn.esprit.infini2.services;
 
-
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -14,8 +12,6 @@ import org.springframework.mail.MailException;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-
-
 import tn.esprit.infini2.entities.Agent;
 import tn.esprit.infini2.entities.Bank;
 import tn.esprit.infini2.entities.CustomerAccount;
@@ -27,6 +23,8 @@ import tn.esprit.infini2.repositories.BankRepository;
 import tn.esprit.infini2.repositories.CustomerAccountRepository;
 import tn.esprit.infini2.repositories.LoanSimulationRepository;
 import tn.esprit.infini2.repositories.OfferRepository;
+
+
 
 
 
@@ -54,6 +52,9 @@ public class LoanSimulationServiceImpl implements ILoanSimulationService {
 	@Autowired
 	IPdfLoanService iPdfService;
 
+	@Autowired
+	IMailServiceLoan iServiceLoan;
+	
 	@Autowired
 	IMailService iMailService;
 
@@ -92,7 +93,8 @@ public class LoanSimulationServiceImpl implements ILoanSimulationService {
 		Agent agent = agentRepository.getAgentByNameBank(nameBank);
 		simulation.setCustomerAccountLoan(customer);
 		simulation.getBankLoan().setAgentBank(agent);
-		simulation.setStatusLoanSimulation(StatutLoanSimulation.inprogress); 
+		StatutLoanSimulation state=StatutLoanSimulation.valueOf("inprogress");
+		simulation.setStatusLoanSimulation(state); 
 		loanSimulationRepository.save(simulation);
 		iMailService.sendWithAttachment(customer, agent, iPdfService.toPDF(simulation.getIdLoan()));
 
@@ -111,14 +113,14 @@ public class LoanSimulationServiceImpl implements ILoanSimulationService {
 	}
 
 	@Override
-	@Scheduled(cron="0 * * * *")
-	public void deleteOrNotifSimulationInScheduling(long idAgent) throws MailException, MessagingException {
+	//@Scheduled(cron="0 * * * * *")
+	public void deleteOrNotifSimulationInScheduling() throws MailException, MessagingException {
 
 		List<LoanSimulation> list1 = loanSimulationRepository.getAllSimulationsDenied();
 		List<LoanSimulation> list2= loanSimulationRepository.getAllSimulationsInProgress();
-		Agent agent=agentRepository.getById(idAgent);
-		
-		if(!list1.isEmpty()){
+		List<Agent> agents=agentRepository.getAllAgents();
+		for (Agent a : agents ) {
+			if(!list1.isEmpty()){
 					
 			for (LoanSimulation simulation : list1) {
 				deleteSimulationById(simulation.getIdLoan());
@@ -129,10 +131,10 @@ public class LoanSimulationServiceImpl implements ILoanSimulationService {
 
 				int nbr = loanSimulationRepository.countAllSimulationsInProgress();
 				System.out.println(nbr);
-				//iMailService.sendEmailNotifAgent(agent, nbr);
+				iServiceLoan.sendEmailNotifAgent(a, nbr);
 				
 		}	
-
+		}
 	}
 
 	
@@ -144,19 +146,12 @@ public class LoanSimulationServiceImpl implements ILoanSimulationService {
 
 		LoanSimulation simulation = loanSimulationRepository.findById(idSimulation).get();
 		CustomerAccount  customer = simulation.getCustomerAccountLoan();
-		simulation.setStatusLoanSimulation(StatutLoanSimulation.confirmed); 
-		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
+		StatutLoanSimulation state=StatutLoanSimulation.valueOf("confirmed");
+		simulation.setStatusLoanSimulation(state); 
 		Date date = new Date(System.currentTimeMillis());
-		//simulation.setS(formatter.format(date));
+		simulation.setDateStartSimulation(date);
 		loanSimulationRepository.save(simulation);
-		//iMailService.sendEmailConfirmation(customer, idSimulation);
-		
-//		LoansSimulationBank simulation=loanRepository.findById(idloan).get();
-//		simulation.setStatus("CONFIRMED");
-//		SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
-//		Date date = new Date(System.currentTimeMillis());
-//		simulation.setStartedDate(formatter.format(date));
-//		loanRepository.save(simulation);
+		iServiceLoan.sendEmailConfirmation(customer, idSimulation);
 	}
 
 	@Override
@@ -164,13 +159,14 @@ public class LoanSimulationServiceImpl implements ILoanSimulationService {
 
 		LoanSimulation simulation = loanSimulationRepository.findById(idSimulation).get();
 		CustomerAccount  customer = simulation.getCustomerAccountLoan();
-		simulation.setStatusLoanSimulation(StatutLoanSimulation.denied); 
+		StatutLoanSimulation state=StatutLoanSimulation.valueOf("denied");
+		simulation.setStatusLoanSimulation(state); 
 		loanSimulationRepository.save(simulation);
-		//iMailService.sendEmailUnConfirmation(customer, idSimulation);
+		iServiceLoan.sendEmailUnConfirmation(customer, idSimulation);
 
 	}
-//////////////////////////////////////////Methods of Calculating simulations///////////////////////////////////
 
+//////////////////////SIMULATE///////////////////////////////////////////////////
 	
 	@Override
 	public LoanSimulation simulate(String nameBank, int nbrAnnee, long idOffer, double salaireCustomer) {
@@ -186,12 +182,14 @@ public class LoanSimulationServiceImpl implements ILoanSimulationService {
 		simulation.setInteretTotale(calculInteretTotale(offer, bank, nbrAnnee));
 		simulation.setPrincipale(calculPrincipale(offer, bank, nbrAnnee));
 		simulation.setMontantRembourse(calculMontantRembourse(offer, bank, nbrAnnee));
-		simulation.setPrixImmob(offer.getOffer_price());
+		simulation.setPrixImmob(offer.getPrice());
 		simulation.setSalaire(salaireCustomer);
 		return simulation;
 		
 	}
 
+//////////////////////////////////////////Methods of Calculating simulations///////////////////////////////////
+	
 	@Override
 	public double calculTaux(Bank bank) {
 		double taux = (bank.getTauxMoyenDuMarche() + bank.getMargeInteretBank()) / 100;
@@ -215,7 +213,7 @@ public class LoanSimulationServiceImpl implements ILoanSimulationService {
 
 	@Override
 	public double calculInteret(Offer offer, Bank bank) {
-		double montant = offer.getOffer_price();
+		double montant = offer.getPrice();
 		double tauxMensuel = calculTauxMensuel(bank);
 		return montant * tauxMensuel;
 	}
@@ -223,7 +221,7 @@ public class LoanSimulationServiceImpl implements ILoanSimulationService {
 	@Override
 	public double calculMensualite(Offer offer, Bank bank, int nbrAnnee) {
 		double tauxMensuel = calculTauxMensuel(bank);
-		double interet = offer.getOffer_price() * tauxMensuel;
+		double interet = offer.getPrice() * tauxMensuel;
 
 		double nbrEcheance = calculNbrEcheance(nbrAnnee) * (-1);
 		double puissance = Math.pow(1 + tauxMensuel, nbrEcheance);
@@ -245,7 +243,7 @@ public class LoanSimulationServiceImpl implements ILoanSimulationService {
 
 	@Override
 	public double calculInteretTotale(Offer offer, Bank bank, int nbrAnnee) {
-		return calculMontantRembourse(offer, bank, nbrAnnee) - offer.getOffer_price();
+		return calculMontantRembourse(offer, bank, nbrAnnee) - offer.getPrice();
 	}
 
 	

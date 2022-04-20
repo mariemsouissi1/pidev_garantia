@@ -18,6 +18,8 @@ import tn.esprit.infini2.entities.LoanSimulation;
 import tn.esprit.infini2.repositories.LoanSimulationRepository;
 
 
+
+
 @Service
 public class MailServiceLoanImpl implements IMailServiceLoan {
 
@@ -158,7 +160,7 @@ public class MailServiceLoanImpl implements IMailServiceLoan {
 					+ "      <tr>\n" + "        <td>&nbsp;</td>\n" + "        <td class=\"container\">\n"
 					+ "          <div class=\"content\">\n" + "\n" + "            <!-- START CENTERED WHITE CONTAINER -->\n"
 					+ "            <table role=\"presentation\" class=\"main\">\n"
-					+ "                    <img src=\"https://i.pinimg.com/originals/38/35/78/3835786416c9f4c6f09399d665415e2d.gif\"></a>\n" + "\n"
+					+ "                    <img src=\"C:\\Garantia\\Garantía__6_-removebg-preview.png\"></a>\n" + "\n"
 
 					+ "              <!-- START MAIN CONTENT AREA -->\n" + "              <tr>\n"
 					+ "                <td class=\"wrapper\">\n"
@@ -207,8 +209,8 @@ public class MailServiceLoanImpl implements IMailServiceLoan {
 		javaMailSender.send(mimeMessage);
 	}
 	
-	
-	public void sendEmailUnConfirmation(CustomerAccount customer,Long idSimulation) throws MailException, MessagingException {
+	@Override
+	public void sendEmailUnConfirmation(CustomerAccount customer,long idSimulation) throws MailException, MessagingException {
 
 		MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 		
@@ -341,7 +343,7 @@ public class MailServiceLoanImpl implements IMailServiceLoan {
 					+ "                <td class=\"wrapper\">\n"
 					+ "                  <table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n"
 					+ "                    <tr>\n" + "                      <td>\n"
-					//+ "                        <p>Dear Mr/Miss "+customer.getFirstNameCustomer()+" "+ customer.getLastNameCustomer()+" ,\"</p>\n"
+					+ "                        <p>Dear Mr/Miss "+customer.getFirstNameCustomer()+" "+ customer.getLastNameCustomer()+" ,\"</p>\n"
 					+ "                        <p>You have a credit request .</p>\n"
 					+ "                        <table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"btn btn-primary\">\n"
 					+ "                          <tbody>\n" + "                            <tr>\n"
@@ -352,7 +354,7 @@ public class MailServiceLoanImpl implements IMailServiceLoan {
 					+ "                            </tr>\n" + "                          </tbody>\n"
 					+ "                        </table>\n" + "<p>We hope you are doing well ! </p>\n"                       
 					+ "                        <p>We are sorry to inform you that your request identified by, "
-					//+ "SIMULATION"+"_"+idSimulation+"_"+formater.format(loan.getPublishedDate())+ " has been denied !!</p>\n"
+					+ "SIMULATION"+"_"+idSimulation+"_"+formater.format(loan.getDateStartSimulation())+ " has been denied !!</p>\n"
 					+ "                        <p>You can now request to another loan simulation and we will back to you soon ! :"+"</p>\n"
 					+ "								<br/>"
 					+ "							<p>All the best.</p>\n"
@@ -380,14 +382,15 @@ public class MailServiceLoanImpl implements IMailServiceLoan {
 		
 		
 		
-		//helper.setTo(customer.getEmailAccount());
+		helper.setTo(customer.getEmailAccount());
 		helper.setSubject("Response To Request of Loan Simulation");
 		helper.setText(messaage,messaage);
 
 		javaMailSender.send(mimeMessage);
 	}
 
-	public void sendEmailConfirmation(CustomerAccount customer,Long idSimulation) throws MailException, MessagingException {
+	@Override
+	public void sendEmailConfirmation(CustomerAccount customer,long idSimulation) throws MailException, MessagingException {
 
 		MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 		LoanSimulation loan=loanRepo.findById(idSimulation).get();
@@ -519,7 +522,7 @@ public class MailServiceLoanImpl implements IMailServiceLoan {
 					+ "                <td class=\"wrapper\">\n"
 					+ "                  <table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n"
 					+ "                    <tr>\n" + "                      <td>\n"
-				//	+ "                        <p>Dear Mr/Miss "+customer.getFirstNameCustomer()+" "+ customer.getLastNameCustomer()+" ,\"</p>\n"
+					+ "                        <p>Dear Mr/Miss "+customer.getFirstNameCustomer()+" "+ customer.getLastNameCustomer()+" ,\"</p>\n"
 					+ "                        <p>You have a credit simulation request .</p>\n"
 					+ "                        <table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"btn btn-primary\">\n"
 					+ "                          <tbody>\n" + "                            <tr>\n"
@@ -530,7 +533,7 @@ public class MailServiceLoanImpl implements IMailServiceLoan {
 					+ "                            </tr>\n" + "                          </tbody>\n"
 					+ "                        </table>\n" + "<p>We hope you are doing well ! </p>\n"                       
 					+ "                        <p>We are now pleased to inform you that your request identified by, "
-				//	+ "SIMULATION"+"_"+idSimulation+"_"+formater.format(loan.getPublishedDate())+ " has been confirmed successfuly !!</p>\n"
+					+ "SIMULATION"+"_"+idSimulation+"_"+formater.format(loan.getDateStartSimulation())+ " has been confirmed successfuly !!</p>\n"
 					+ "                        <p>You can now choose a date to book an appointment with the bank's consultant :"+"</p>\n"
 					+ "								<br/>"
 					+ "							<p>All the best.</p>\n"
@@ -558,7 +561,7 @@ public class MailServiceLoanImpl implements IMailServiceLoan {
 		
 		
 		
-		//helper.setTo(customer.getEmailAccount());
+		helper.setTo(customer.getEmailAccount());
 		helper.setSubject("Request of Loan Simulation");
 		helper.setText(messaage,messaage);
 
@@ -569,7 +572,7 @@ public class MailServiceLoanImpl implements IMailServiceLoan {
 	
 
 	@Override
-	public void sendEmailWithAttachment(CustomerAccount customer,Agent agent,String attch,Long idLoan) throws MailException, MessagingException {
+	public void sendEmailWithAttachment(CustomerAccount customer,Agent agent,String attch,long idLoan) throws MailException, MessagingException {
 
 		MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 		
@@ -709,7 +712,7 @@ public class MailServiceLoanImpl implements IMailServiceLoan {
 				+ "                            </tr>\n" + "                          </tbody>\n"
 				+ "                        </table>\n" + "<p>We hope you are doing well ! </p>\n"                       
 				+ "                        <p>We are now pleased to inform you that you have a request identified by, "
-			//	+ customer.getCin() + " from our client Mr/Miss " + customer.getFirstNameCustomer() +" "+customer.getLastNameCustomer()+ " and you find the simulation report attached !!</p>\n"
+				+ customer.getCin() + " from our client Mr/Miss " + customer.getFirstNameCustomer() +" "+customer.getLastNameCustomer()+ " and you find the simulation report attached !!</p>\n"
 				+ "                        <p>If you want to confirm his request just click on this link : </p>\n"
 				+ "                      <h5>lien ici " + "</h5> <a href=\"http://localhost:8087/pidevmariem/Simulation/confirmSimulation/"+idLoan+"\">Confirmer</a>\n"
 				+"								<br/>"
@@ -748,18 +751,6 @@ public class MailServiceLoanImpl implements IMailServiceLoan {
 
 	}
 
-	@Override
-	public void sendEmailConfirmation(CustomerAccount customer, long idSimulation)
-			throws MailException, MessagingException {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void sendEmailUnConfirmation(CustomerAccount customer, long idSimulation)
-			throws MailException, MessagingException {
-		// TODO Auto-generated method stub
-		
-	}
 
 }
