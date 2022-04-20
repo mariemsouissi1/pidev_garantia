@@ -84,26 +84,27 @@ public class AppController {
         LocalDate today = LocalDate.now();
         Date date = Date.from(today.atStartOfDay(defaultZoneId).toInstant());
         customerAccount.setDateCreationCompte(date);
+        customerAccount.setEmailAccount(customer.getEmail());
         customerAccountRepository.save(customerAccount);
         //senderService.sendSimpleMessage(customer.getEmail(),"subject","body");
         return  customerRepo.save(customer);
     }
 
-    //@PreAuthorize("hasAuthority(@userService.Employee())")
+    @PreAuthorize("hasAuthority(@userService.Employee())")
     @GetMapping("/customersList")
     public List<Customer> customersList() {
         List<Customer> list = (List<Customer>) customerRepo.findAll();
         return list;
     }
 
-    //@PreAuthorize("hasAuthority(@userService.Customer())")
+    @PreAuthorize("hasAuthority(@userService.Customer())")
     @PutMapping("/updateCustomer")
     @ResponseBody
     public Customer updateCustomer(@RequestBody Customer customer) {
         return customerService.updateCustomer(customer);
     }
 
-    //@PreAuthorize("hasAuthority(@userService.Employee())")
+    @PreAuthorize("hasAuthority(@userService.Employee())")
     @PutMapping("/updateEmployee")
     @ResponseBody
     public Employee updateEmployee(@RequestBody Employee employee) {
