@@ -47,6 +47,14 @@ import { PagesDropdownComponent } from "./components/dropdowns/pages-dropdown/pa
 import { NotificationDropdownComponent } from "./components/dropdowns/notification-dropdown/notification-dropdown.component";
 import { SidebarComponent } from "./components/sidebar/sidebar.component";
 import { UserDropdownComponent } from "./components/dropdowns/user-dropdown/user-dropdown.component";
+import { ClaimsComponent } from './views/admin/claims/claims.component';
+import { OffersComponent } from './views/admin/offers/offers.component';
+import { ChatsComponent } from './views/admin/chats/chats.component';
+import { CreditsComponent } from './views/admin/credits/credits.component';
+import { SinistersComponent } from './views/admin/sinisters/sinisters.component';
+import { ProvisionsComponent } from './views/admin/provisions/provisions.component';
+import { ContractsComponent } from './views/admin/contracts/contracts.component';
+import { CardClaimsComponent } from './components/cards/card-claims/card-claims.component';
 
 @NgModule({
   declarations: [
@@ -84,6 +92,14 @@ import { UserDropdownComponent } from "./components/dropdowns/user-dropdown/user
     IndexComponent,
     LandingComponent,
     ProfileComponent,
+    ClaimsComponent,
+    OffersComponent,
+    ChatsComponent,
+    CreditsComponent,
+    SinistersComponent,
+    ProvisionsComponent,
+    ContractsComponent,
+    CardClaimsComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],

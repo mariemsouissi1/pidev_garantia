@@ -10,6 +10,13 @@ import { DashboardComponent } from "./views/admin/dashboard/dashboard.component"
 import { MapsComponent } from "./views/admin/maps/maps.component";
 import { SettingsComponent } from "./views/admin/settings/settings.component";
 import { TablesComponent } from "./views/admin/tables/tables.component";
+import {  OffersComponent} from "./views/admin/offers/offers.component";
+import {  ClaimsComponent  } from "./views/admin/claims/claims.component";
+import {  ChatsComponent  } from "./views/admin/chats/chats.component";
+import {  CreditsComponent  } from "./views/admin/credits/credits.component";
+import {  ContractsComponent  } from "./views/admin/contracts/contracts.component";
+import {  ProvisionsComponent  } from "./views/admin/provisions/provisions.component";
+import {  SinistersComponent  } from "./views/admin/sinisters/sinisters.component";
 
 // auth views
 import { LoginComponent } from "./views/auth/login/login.component";
@@ -30,6 +37,13 @@ const routes: Routes = [
       { path: "settings", component: SettingsComponent },
       { path: "tables", component: TablesComponent },
       { path: "maps", component: MapsComponent },
+      { path: "offers", component: OffersComponent},
+      { path: "claims", component: ClaimsComponent},
+      { path: "chats", component: ChatsComponent  },
+      { path: "credits", component: CreditsComponent},  
+      { path: "contracts", component: ContractsComponent},
+      { path: "provisions", component: ProvisionsComponent},  
+      { path: "sinisters", component: SinistersComponent },
       { path: "", redirectTo: "dashboard", pathMatch: "full" },
     ],
   },
