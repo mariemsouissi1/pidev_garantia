@@ -1,9 +1,10 @@
 export class Contract {
-  iidContract : any;
+  idContract : any;
   durationContract : any;
   PrimeContract : any;
   creationDate : any;
   expirationDate : any;
-  
+  typeContract : any
+
 
 }

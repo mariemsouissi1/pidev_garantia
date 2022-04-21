@@ -1,0 +1,97 @@
+<div class="row">
+  <div class="row">
+      <div class="col-md-12">
+          <button class="btn btn-round btn-sm btn-success" (click)="open(mymodal1)">Add new Contract</button>
+          <br><br>
+          <ng-template #mymodal1 let-modal1>
+              <div class="modal-header">
+                  <h4 class="modal-idContract" id="modal-basic-idContract" >Add new Contract</h4>
+                  <button type="button" class="close" aria-label="Close" (click)="modal1.dismiss('Cross click')">
+                      <span aria-hidden="true" (click)="cancel()">×</span>
+                  </button>
+
+              </div>
+              <div class="center">
+              <form>
+                  <div class="row" class="col-md-6">
+                      <input type="text" placeholder="Contract Name" [(ngModel)]="Contract.idContract"
+                          [ngModelOptions]="{standalone : true}">
+                  </div>
+                  <div class="row" class="col-md-6">
+                      <input type="number" placeholder="durationContract" [(ngModel)]="Contract.durationContract"
+                          [ngModelOptions]="{standalone : true}">
+                  </div>
+                  <div class="row" class="col-md-6">
+                      <input type="number" placeholder="typeContract" [(ngModel)]="Contract.typeContract"
+                          [ngModelOptions]="{standalone : true}">
+                  </div>
+                  <br>
+                  <button type="button" class="btn btn-success" (click)="addContract(Contract)" (click)="modal1.close('Save click')">Add</button>
+                  <button type="button" class="btn btn-info" (click)="modal1.close('Save click')" >Cancel</button>
+              </form>
+          </div>
+          </ng-template>
+          <div class="row">
+              <div class="card" class="text-center">
+                  <table class="table">
+                      <thead style="background-color: rgb(192, 183, 183);">
+                          <th>idContract</th>
+                          <th>durationContract</th>
+                          <th>typeContract</th>
+                          <th>Action</th>
+                      </thead>
+                      <tbody>
+                          <tr *ngFor='let p of listContracts'>
+                              <td>{{p.idContract}}</td>
+                              <td>{{p.durationContract}}</td>
+                              <td>{{p.typeContract}}</td>
+                              <td><button type="button" class="btn btn-outline-primary"
+                                      (click)="open(mymodal)">edit</button>
+                                  <ng-template #mymodal let-modal>
+                                      <div class="modal-header">
+                                          <h4 class="modal-idContract" id="modal-basic-idContract">Edit</h4>
+                                          <button type="button" class="close" aria-label="Close"
+                                              (click)="modal.dismiss('Cross click')">
+                                              <span aria-hidden="true" (click)="cancel()">×</span>
+
+                                          </button>
+
+                                      </div>
+                                      <div>
+                                      <form>
+                                          <div class="modal-body">
+
+                                              <div class="row" class="col-md-5">
+                                                  <label>idContract</label>
+                                                  <input type="text" [(ngModel)]="p.idContract" [ngModelOptions]="{standalone : true}" />
+                                              </div>
+                                              <div class="row" class="col-md-5">
+                                                  <label>durationContract</label>
+                                                  <input type="number" [(ngModel)]="p.durationContract" [ngModelOptions]="{standalone : true}" />
+                                              </div>
+                                              <div class="row" class="col-md-5">
+                                                  <label>typeContract</label>
+                                                  <input type="number" [(ngModel)]="p.typeContract" [ngModelOptions]="{standalone : true}" />
+                                              </div>
+                                          </div>
+
+                                          <div class="modal-footer">
+
+                                              <button type="button" class="btn btn-info"
+                                                  (click)="modal.close('Save click')" (click)="cancel()">Cancel</button>
+                                              <button class="btn btn-success"(click)="editContract(p)" (click)="modal.close('Save click')">Validate</button>
+                                          </div>
+                                      </form>
+                                  </div>
+                                  </ng-template>
+                                  <button type="button" class="btn btn-outline-danger"
+                                      (click)="deleteContract(p.idContract)">delete</button>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+  </div>
+  </div>
